@@ -1,3 +1,19 @@
 body {
-  background-color: blue;
+  background-color: white;
+}
+
+@media screen and (min-width: 375px) {
+  body {
+    background-color: blue;
+  }
+}
+@media screen and (min-width: 820px) {
+  body {
+    background-color: aqua;
+  }
+}
+@media screen and (min-width: 1300px) {
+  body {
+    background-color: yellow;
+  }
 }/*# sourceMappingURL=style.css.map */
