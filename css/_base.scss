@@ -23,6 +23,45 @@ body {
     
 }
 
+.decrease, .increase, input:focus {
+    outline: 2px solid blue; /* Tydlig fokusindikation */
+}
+
+.munk-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.munk-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.price {
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.total-price {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .product {
     width: 350px;
     margin: 10px;
