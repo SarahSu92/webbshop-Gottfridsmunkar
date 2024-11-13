@@ -1,4 +1,41 @@
 body {
-    background-color: white;
+    max-width: 1200px;  
+    margin: 0 auto;     
+    padding: 20px;      
+    box-sizing: border-box; 
 }
 
+
+.material-symbols-outlined {
+  margin-left: 80%;
+  
+}
+
+
+/* Grundläggande stil för sorteringsalternativ */
+.sorting-options {
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.product {
+    width: 350px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product h3 {
+    margin-top: 0;
+}
+
+.product p {
+    margin: 5px 0;
+}
