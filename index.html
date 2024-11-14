@@ -32,11 +32,12 @@
     <ul>
       <li>Produkter</li>
       <li>Beställning</li>
-      <span class="material-symbols-outlined">
-      shopping_cart
-      </span>
-    </ul>
+      </ul>
   </nav>
+
+  <a href="#cartSection" id="cartLink" id="updateCart" onclick="updateCart()">
+    <span class="material-symbols-outlined">shopping_cart</span>
+  </a>
 
 </header>
 
@@ -275,7 +276,8 @@
       <div class="product" data-name="Polkagrismunk" data-price="15" data-category="Godis" data-rating="3">
           <h3>Polkagrismunk</h3>
           <img src="images/candycane.png" alt="Munk med polkagrissmak" width="300" height="250">
-<div class="munk-container">
+
+          <div class="munk-container">
           <div class="munk-item">
             <input type="number" class="quantity" value="0" id="munk10" data-munk="10" readonly />
             <button class="decrease" data-munk="10">-</button>
@@ -298,9 +300,19 @@
 
 
 
-<section>
-  <span class="cart">Varukorg</span>
-  <span class="cart">Kundsupport: 08-52012345</span>
+<section id="cartSection">
+  <h3>Varukorg</h3><span class="cart">Kundsupport: 08-52012345</span>
+  <ul id="cartItems">
+    <!-- Här kommer munkarna att listas dynamiskt -->
+  </ul>
+  
+  <p class="totsum">Total summa: <span id="totalAmount">0 kr</span></p>
+  <div id="discountLine" style="display: none;">
+    <p class="discountText">Måndagsrabatt. 10% p hela beställningen</p>
+    <p class="discountText">Helgpåslag: 15 % på munkarna</p>
+  </div>
+  <p class="totprice"><strong>Att betala: <span id="finalAmount">0 kr</span></strong></p>
+  
   <span class="items">Produkt</span>
   <span class="items">Antal</span>
   <span class="items">Styckpris</span>
@@ -309,7 +321,11 @@
     <label for="delivery_date">Önskat leveransdatum:</label>
   <input type="date" id="delivery_date" name="delivery_date"><br>
 
-<form action="submit_order.php" method="POST">
+
+
+
+
+  <form action="submit_order.php" method="POST">
   <h3>Beställningsformulär</h3>
   <label for="fname">Förnamn</label>
   <input type="text" id="fname" name="fname" required><br>
@@ -359,6 +375,7 @@
   <button class="reset" type="reset" id="resetBtn">Rensa beställning</button>
 </form>
 
+<section>
 <h3>Betalning</h3>
   <label for="payment">Betalningsmetod:</label>
   <select id="payment" name="payment" required onchange="handlePaymentMethodChange()">
@@ -385,6 +402,7 @@
   <input type="text" id="personal_id" name="personal_id" placeholder="ÅÅÅÅMMDD-XXXX"><br>
   <span class="error" id="personalIdError" role="alert" aria-live="assertive"></span><br>
 </div>
+</section>
 
 
   <script src="script.js"></script>

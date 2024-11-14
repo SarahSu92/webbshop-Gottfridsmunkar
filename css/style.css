@@ -3,11 +3,45 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-.material-symbols-outlined {
-  margin-left: 80%;
+a {
+  margin-left: 80vw;
+  color: black;
+}
+
+/* Grundstil för totalsumman */
+.total-amount {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Standardfärg */
+  transition: all 0.3s ease; /* Mjuk övergång för alla förändringar */
+}
+
+/* Färgändring och storleksskiftning vid uppdatering */
+.total-amount.updated {
+  color: #4CAF50; /* Grön färg för att markera uppdatering */
+  font-size: 26px; /* Öka storleken för en visuell effekt */
+  animation: pulse 0.6s ease-in-out; /* Pulserande effekt */
+}
+
+/* Pulserande animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* Öka storleken något */
+  }
+  100% {
+    transform: scale(1); /* Återgå till normal storlek */
+  }
+}
+/* Fokusindikation för knappar och interaktiva element */
+input:focus, button:focus, select:focus, textarea:focus {
+  outline: none; /* Ta bort standardfokusram */
+  border: 2px solid #4D90FE; /* Blå kant när elementet är fokuserat */
+  box-shadow: 0 0 5px rgba(77, 144, 254, 0.6); /* Tydlig skugga för fokus */
 }
 
 /* Grundläggande stil för sorteringsalternativ */
@@ -18,10 +52,6 @@ body {
 .product-list {
   display: flex;
   flex-wrap: wrap;
-}
-
-.decrease, .increase, input:focus {
-  outline: 2px solid blue; /* Tydlig fokusindikation */
 }
 
 .munk-container {
@@ -99,6 +129,12 @@ input:valid, select:valid {
 .submitBtn:disabled {
   background-color: #ddd;
   cursor: not-allowed;
+}
+
+.discountText {
+  color: #e74c3c; /* Röd färg för att markera rabatten */
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 @media screen and (min-width: 375px) {
