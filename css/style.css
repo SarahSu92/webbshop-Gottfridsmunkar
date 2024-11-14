@@ -36,9 +36,15 @@ body {
   gap: 10px;
 }
 
-button {
+button.decrease {
   padding: 10px;
-  font-size: 16px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+button.increase {
+  padding: 10px;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
@@ -74,6 +80,25 @@ input[type=number] {
 
 .product p {
   margin: 5px 0;
+}
+
+input:invalid, select:invalid {
+  border-color: red;
+}
+
+input:valid, select:valid {
+  border-color: green;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.submitBtn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 @media screen and (min-width: 375px) {

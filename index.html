@@ -297,19 +297,95 @@
 </main>
 
 
-<form>
 
+<section>
   <span class="cart">Varukorg</span>
   <span class="cart">Kundsupport: 08-52012345</span>
-
   <span class="items">Produkt</span>
   <span class="items">Antal</span>
   <span class="items">Styckpris</span>
   <span class="items">Delsumma</span>
- 
+  
+    <label for="delivery_date">Önskat leveransdatum:</label>
+  <input type="date" id="delivery_date" name="delivery_date"><br>
 
+<form action="submit_order.php" method="POST">
+  <h3>Beställningsformulär</h3>
+  <label for="fname">Förnamn</label>
+  <input type="text" id="fname" name="fname" required><br>
+  <span class="error" id="fnameError" role="alert" aria-live="assertive"></span><br>
 
+  <label for="lname">Efternamn</label>
+  <input type="text" id="lname" name="lname" required><br>
+  <span class="error" id="lnameError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="address">Gatuadress:</label>
+  <input type="text" id="address" name="address" required><br>
+  <span class="error" id="addressError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="postal">Postnummer:</label>
+  <input type="text" id="postal" name="postal" required><br>
+  <span class="error" id="postalError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="gatecode">Ev. portkod</label>
+  <input type="text" id="gatecode" name="postal" required><br>
+  <span class="error" id="gatecodeError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="phone">Telefonnummer (mobil):</label>
+  <input type="tel" id="phone" name="phone" required><br>
+  <span class="error" id="phoneError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="email">E-postadress:</label>
+  <input type="email" id="email" name="gatecode" required><br>
+  <span class="error" id="emailError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="city">Stad:</label>
+  <input type="text" id="city" name="city" required><br>
+  <span class="error" id="cityError" role="alert" aria-live="assertive"></span><br>
+
+  <label for="discount_code">Ange Rabattkod:</label>
+  <input type="text" id="discount_code" name="discount_code" placeholder="Skriv rabattkod här"><br>
+  <span class="error" id="discountCodeError"></span><br>
+
+  <label>
+    <input type="checkbox" name="terms" required> Jag godkänner villkoren och behandling av personuppgifter.
+  </label><br>
+
+  <label>
+    <input type="checkbox" name="terms" checked>Håll dig uppdaterad med vårt Nyhetsbrev!
+  </label><br>
+
+  <input type="submit" value="Skicka beställning">
+  <button class="reset" type="reset" id="resetBtn">Rensa beställning</button>
 </form>
+
+<h3>Betalning</h3>
+  <label for="payment">Betalningsmetod:</label>
+  <select id="payment" name="payment" required onchange="handlePaymentMethodChange()">
+    <option value="">Välj betalningsmetod</option>
+    <option value="credit_card">Bankkort</option>
+    <option value="invoice">Faktura</option>
+  </select><br>
+
+
+<div id="creditCardFields" style="display:none;">
+  <label for="card_number">Kortnummer:</label>
+  <input type="text" id="card_number" name="card_number" placeholder="1234 5678 1234 5678"><br>
+
+  <label for="expiry_date">Utgångsdatum:</label>
+  <input type="month" id="expiry_date" name="expiry_date"><br>
+
+  <label for="cvc">CVC:</label>
+  <input type="text" id="cvc" name="cvc" placeholder="123"><br>
+</div>
+
+
+<div id="invoiceFields" style="display:none;">
+  <label for="personal_id">Personnummer (ÅÅÅÅMMDD-XXXX):</label>
+  <input type="text" id="personal_id" name="personal_id" placeholder="ÅÅÅÅMMDD-XXXX"><br>
+  <span class="error" id="personalIdError" role="alert" aria-live="assertive"></span><br>
+</div>
+
 
   <script src="script.js"></script>
 </body>
