@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="sv">
 
 <head>
   <meta charset="utf-8">
@@ -29,7 +29,7 @@
   
   <h1>Gottfrids Munkar Onlinebutik</h1>
   <nav>
-    <ul>
+    <ul class="nav">
       <li>Produkter</li>
       <li>Beställning</li>
       </ul>
@@ -43,265 +43,19 @@
 
 <main>
 
-  <section>
-    <article>
-      
-      <h2>Produkter</h2>
-      <div class="sorting-options">
-        <label for="sort-by" aria-label="Sorteringsalternativ">Sortera efter:</label>
-        <select id="sort-by" onchange="sortProducts()" aria-live="polite">
-        <option value="name">Namn</option>
-        <option value="price">Pris</option>
-        <option value="category">Kategori</option>
-        <option value="rating">Rating</option>
-        </select>
-    </div>
-    
-  </article>
-  </section>
+ <section>
+<h2>Produkter</h2>
+<div id="product-list">
 
-  <section>
-    <article>
-    <div class="product-list">
-      <div class="product" data-name="Munk Äpple" data-price="15" data-category="Fruktsmak" data-rating="4">
-          <h3>Äppelmunk</h3>
-          <img src="images/apple.png" alt="Munk med smak av Äpple" width="300" height="250">
-          <div class="munk-container">
-          <div class="munk-item">
-            <input type="number" class="quantity" value="0" id="munk1" data-munk="1" readonly />
-            <button class="decrease" data-munk="1">-</button>
-            <button class="increase" data-munk="1">+</button>
-            <span class="price" id="price1">Pris: 0 kr</span>
-           </div>
-          </div>
-
-          <p>Pris: 15 kr</p>
-          <p>Kategori: Frukt</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Munk Körsbär" data-price="19" data-category="Fruktsmak" data-rating="3">
-          <h3>Körsbärsmunk</h3>
-          <img src="images/cherry.png" alt="Munk med körsbärssmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk2" data-munk="2" readonly />
-              <button class="decrease" data-munk="2">-</button>
-              <button class="increase" data-munk="2">+</button>
-              <span class="price" id="price2">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 19 SEK</p>
-          <p>Kategori: Frukt</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Munk Choklad" data-price="15" data-category="Choklad" data-rating="4">
-          <h3>Chokladmunk</h3>
-          <img src="images/chocolate.png" alt="Munk med chokladsmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk3" data-munk="3" readonly />
-              <button class="decrease" data-munk="3">-</button>
-              <button class="increase" data-munk="3">+</button>
-              <span class="price" id="price3">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 15 SEK</p>
-          <p>Kategori: Choklad</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Munk Kanel" data-price="19" data-category="Kryddor" data-rating="2">
-          <h3>Kanelmunk</h3>
-          <img src="images/cinnamon.png" alt="Munk med kanelsmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk4" data-munk="4" readonly />
-              <button class="decrease" data-munk="4">-</button>
-              <button class="increase" data-munk="4">+</button>
-              <span class="price" id="price4">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 19 SEK</p>
-          <p>Kategori: Kryddor</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Munk Kaffe" data-price="19" data-category="Kaffe" data-rating="3">
-          <h3>Kaffemunk</h3>
-          <img src="images/coffee.png" alt="Munk med kaffesmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk5" data-munk="5" readonly />
-              <button class="decrease" data-munk="5">-</button>
-              <button class="increase" data-munk="5">+</button>
-              <span class="price" id="price5">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 19 SEK</p>
-          <p>Kategori: Kaffe</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Cookiemunk" data-price="12" data-category="Kakor" data-rating="3">
-          <h3>Cookie munk</h3>
-          <img src="images/cookie.png" alt="Munk med kakorsmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk6" data-munk="6" readonly />
-              <button class="decrease" data-munk="6">-</button>
-              <button class="increase" data-munk="6">+</button>
-              <span class="price" id="price6">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 12 SEK</p>
-          <p>Kategori: Kakor</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Lakritsmunk" data-price="15" data-category="Godis" data-rating="4">
-          <h3>Lakritsmunk</h3>
-          <img src="images/licorice.png" alt="Munk med lakritssmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk7" data-munk="7" readonly />
-              <button class="decrease" data-munk="7">-</button>
-              <button class="increase" data-munk="7">+</button>
-              <span class="price" id="price7">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 15 SEK</p>
-          <p>Kategori: Godis</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="JOrdgubbsmunk" data-price="19" data-category="Frukt" data-rating="3">
-          <h3>Jordgubbsmunk</h3>
-          <img src="images/strawberry.png" alt="Munk med jordgubbssmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk8" data-munk="8" readonly />
-              <button class="decrease" data-munk="8">-</button>
-              <button class="increase" data-munk="8">+</button>
-              <span class="price" id="price8">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 19 SEK</p>
-          <p>Kategori: Frukt</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Vaniljmunk" data-price="15" data-category="Kryddor" data-rating="4">
-          <h3>Vaniljmunk</h3>
-          <img src="images/vanilla.png" alt="Munk med vaniljsmak" width="300" height="250">
-          <div class="munk-container">
-            <div class="munk-item">
-              <input type="number" class="quantity" value="0" id="munk9" data-munk="9" readonly />
-              <button class="decrease" data-munk="9">-</button>
-              <button class="increase" data-munk="9">+</button>
-              <span class="price" id="price9">Pris: 0 kr</span>
-             </div>
-            </div>
-
-          <p>Pris: 19 SEK</p>
-          <p>Kategori: Kryddor</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-      </div>
-  </article>
-
-  <article>
-    <div class="product-list">
-      <div class="product" data-name="Polkagrismunk" data-price="15" data-category="Godis" data-rating="3">
-          <h3>Polkagrismunk</h3>
-          <img src="images/candycane.png" alt="Munk med polkagrissmak" width="300" height="250">
-
-          <div class="munk-container">
-          <div class="munk-item">
-            <input type="number" class="quantity" value="0" id="munk10" data-munk="10" readonly />
-            <button class="decrease" data-munk="10">-</button>
-            <button class="increase" data-munk="10">+</button>
-            <span class="price" id="price10">Pris: 0 kr</span>
-           </div>
-          </div>
-
-          <p>Pris: 15 SEK</p>
-          <p>Kategori: Godis</p>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          <label for="star-4">&#9733;</label>
-          
-      </div>
-  </article>
-
-</section>
+</div>
+ </section>
+ 
 </main>
 
 
 
 <section id="cartSection">
-  <h3>Varukorg</h3><span class="cart">Kundsupport: 08-52012345</span>
+  <h3>Din Varukorg</h3><span class="cart">Kundsupport: 08-52012345</span>
   <ul id="cartItems">
     <!-- Här kommer munkarna att listas dynamiskt -->
   </ul>
@@ -375,7 +129,7 @@
   <button class="reset" type="reset" id="resetBtn">Rensa beställning</button>
 </form>
 
-<section>
+<section class="payment">
 <h3>Betalning</h3>
   <label for="payment">Betalningsmetod:</label>
   <select id="payment" name="payment" required onchange="handlePaymentMethodChange()">
