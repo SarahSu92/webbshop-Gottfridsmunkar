@@ -101,7 +101,7 @@ const products = [
         price: 15,
         raiting: 3,
         amount: 0,
-        category: 'Kakor',
+        category: 'Godis',
         img: {
             url: 'images/creamy.png',
             alt: "Munk med smak av cheesecake"
@@ -145,17 +145,16 @@ products.forEach(product => {
     productsListDiv.innerHTML += 
 `
 <article class="product">
+
 <img src="${product.img.url}">
 <h3>${product.name}</h3>
 <p>${product.price} kr</p>
-<label for="star-4"> &#9733;</label>
-<label for="star-4"> &#9733;</label>
-<label for="star-4"> &#9733;</label>
-<label for="star-4"> &#9733;</label>
+
 <div>
-<button id="increaseBtn">+</button>
-<input type="number" id="amountInput" min="0" value="0">
-<button id="decreaseBtn">-</button>
+<div>
+<button class="decrease" id="decrease-${product.id}">decrease</button>
+<input type="number" min="0" value="${product.amount}" id="input-${product.id}">
+<button class="increase" id="increase-${product.id}">increase</button>
 </div>
 
 </article>
@@ -165,28 +164,108 @@ products.forEach(product => {
 });
 
 
-    function printProductsList() {
+
+
+
+
+
+
+//Sortera produkterna utifrån namn, pris, kategori och rating 
+    function sortProducts(products, sortBy, ascending = true) {
+      return products.sort((a, b) => {
+          let comparison = typeof a[sortBy] === "string"
+              ? a[sortBy].localeCompare(b[sortBy])
+              : a[sortBy] - b[sortBy];
+          return ascending ? comparison : -comparison;
+      });
+  }
+
+  function updateProductList() {
+      const sortCriteria = document.getElementById("sortCriteria").value;
+      const descending = document.getElementById("descending").checked;
+      const sortedProducts = sortProducts(products, sortCriteria, !descending);
+
+      const productList = document.getElementById("product-list");
+      productList.innerHTML = "";
+
+      sortedProducts.forEach(product => {
+          const productDiv = document.createElement("div");
+          productDiv.classList.add("product");
+          productDiv.innerHTML = productsListDiv.innerHTML += 
+          `
+          <section class="container">
+            <article class="product">
+              <h3>${product.name}</h3>
+              <p>${product.price} kr</p>
+              <img src="${product.img.url}" alt="${product.img.alt}">
+              <div>
+                
+                <button class="decrease" id="decrease-${product.id}">-</button>
+                <button class="increase" id="increase-${product.id}">+</button>
+                <span>${product.amount}</span>
+              </div>
+            </article>
+            </section>
+          `
+          
+      });
+  }
+
+  // Ladda produkterna vid sidladdning
+  updateProductList();
+
+
+
+  function increaseProductCount(e) {
+    const productId = Number(e.target.id.replace('increase-', ''));
+    const foundProductIndex = products.findIndex(product => product.id === productId);
+    products[foundProductIndex].amount += 1;
+    printProductsList();
+  
+  }
+  
+  function decreaseProductCount(e) {
+    console.log('click');
+    const productId = Number(e.target.id.replace('decrease-', ''));
+    const foundProductIndex = products.findIndex(product => product.id === productId);
+    
+    if (foundProductIndex !== -1 && products[foundProductIndex].amount > 0) {
+      // Minska mängden med 1 om den är större än 0
+      products[foundProductIndex].amount--;
+    }
+  
+  
+  printProductsList();
+  
+  }
+  
+  // Initiera listan
+  printProductsList();
+
+
+
+
+  function printProductsList() {
     // Rensa div:en på befintliga produkter innan utskrift av uppdaterad information
     productsListDiv.innerHTML = '';
   
     products.forEach(product => {
       productsListDiv.innerHTML += 
       `
+      <section class="container">
         <article class="product">
           <h3>${product.name}</h3>
           <p>${product.price} kr</p>
           <img src="${product.img.url}" alt="${product.img.alt}">
-            <label for="star-4"> &#9733;</label>
-            <label for="star-4"> &#9733;</label>
-            <label for="star-4"> &#9733;</label>
-            <label for="star-4"> &#9733;</label>
           <div>
-            <button class="increase" aria-label="Öka antalet munkar" id="increase-${product.id}">+</button>
-            <input type="number" min="0" value="${product.amount}" id="input-${product.id}">
-            <button class="decrease" aria-label="Minska antalet munkar" id="decrease-${product.id}">-</button>
+            
+            <button class="decrease" id="decrease-${product.id}">-</button>
+            <button class="increase" id="increase-${product.id}">+</button>
+            <span>${product.amount}</span>
           </div>
         </article>
-      `;
+        </section>
+      `
     });
   
  
@@ -197,29 +276,38 @@ products.forEach(product => {
     button.addEventListener('click', increaseProductCount);
   });
 
-}
-
   const decreaseButtons = document.querySelectorAll('button.decrease');
   decreaseButtons.forEach(button => {
     button.addEventListener('click', decreaseProductCount);
   });
+ 
 
+}
 
-function increaseProductCount(e) {
+  function increaseProductCount(e) {
   const productId = Number(e.target.id.replace('increase-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
   products[foundProductIndex].amount += 1;
   printProductsList();
+
 }
 
 function decreaseProductCount(e) {
+  console.log('click');
   const productId = Number(e.target.id.replace('decrease-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
-  if (products[foundProductIndex].amount > 0) {
-    products[foundProductIndex].amount -= 1;
+  
+  if (foundProductIndex !== -1 && products[foundProductIndex].amount > 0) {
+    // Minska mängden med 1 om den är större än 0
+    products[foundProductIndex].amount--;
   }
-  printProductsList();
+
+
+printProductsList();
+
 }
 
 // Initiera listan
 printProductsList();
+
+

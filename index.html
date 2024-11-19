@@ -43,11 +43,24 @@
 
 <main>
 
+<section>
+  <h3>Sortera på:</h3>
+  <label for="sortCriteria">Sortera efter:</label>
+    <select id="sortCriteria">
+        <option value="name">Namn</option>
+        <option value="price">Pris</option>
+        <option value="category">Kategori</option>
+        <option value="rating">Rating</option>
+    </select>
+    <label>
+        <input type="checkbox" id="descending" /> Fallande ordning
+    </label>
+    <button onclick="updateProductList()">Sortera</button>
+</section>
+
  <section>
 <h2>Produkter</h2>
-<div id="product-list">
-
-</div>
+<div id="product-list"></div>
  </section>
  
 </main>

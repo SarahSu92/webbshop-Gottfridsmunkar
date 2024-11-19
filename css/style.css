@@ -10,6 +10,11 @@ h1 {
   text-align: center;
 }
 
+.material-symbols-outlined {
+  margin-left: 420px;
+  padding-top: 20px;
+}
+
 nav {
   background-color: rgb(178, 244, 207);
   height: 30px;
@@ -25,16 +30,27 @@ nav {
   font-weight: bold;
 }
 
+h2 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .product {
-  border-bottom: 2px solid black;
-  margin-bottom: 20px;
+  flex: 0 1 calc(50% - 10px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
 img {
-  max-width: 300px;
+  width: 300px;
   height: 250px;
   display: block;
-  margin-bottom: 20px;
 }
 
 /* Grundstil för totalsumman */
@@ -106,17 +122,31 @@ input:valid, select:valid {
 }
 @media screen and (min-width: 820px) {
   body {
-    max-width: 1200px; /* Maximal bredd */
-    margin: 0 auto; /* Centrerar innehållet */
-    padding: 20px; /* Padding runt innehållet */
-    box-sizing: border-box; /* Inkluderar padding och border i bredden */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  img {
+    padding-left: 20px;
+  }
+  .material-symbols-outlined {
+    margin-left: 650px;
+    padding-top: 20px;
   }
 }
 @media screen and (min-width: 1300px) {
   body {
-    max-width: 1200px; /* Maximal bredd */
-    margin: 0 auto; /* Centrerar innehållet */
-    padding: 20px; /* Padding runt innehållet */
-    box-sizing: border-box; /* Inkluderar padding och border i bredden */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  img {
+    padding-left: 100px;
+  }
+  .material-symbols-outlined {
+    margin-left: 950px;
+    padding-top: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,16 @@
 body {
-    max-width: 1200px;  /* Maximal bredd */
-    margin: 0 auto;     /* Centrerar innehållet */
-    padding: 20px;      /* Padding runt innehållet */
-    box-sizing: border-box; /* Inkluderar padding och border i bredden */
+    max-width: 1200px;  
+    margin: 0 auto;     
+    padding: 20px;      
+    box-sizing: border-box; 
 }
+
+
+img {
+    padding-left: 100px;
+}
+
+.material-symbols-outlined {
+    margin-left: 950px;
+    padding-top: 20px;
+  }
