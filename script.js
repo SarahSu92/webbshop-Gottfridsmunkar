@@ -149,6 +149,7 @@ products.forEach(product => {
 <img src="${product.img.url}">
 <h3>${product.name}</h3>
 <p>${product.price} kr</p>
+<p>Kategori: ${product.category}</p>
 
 <div>
 <div>
@@ -162,11 +163,6 @@ products.forEach(product => {
 `
 
 });
-
-
-
-
-
 
 
 
@@ -197,6 +193,7 @@ products.forEach(product => {
             <article class="product">
               <h3>${product.name}</h3>
               <p>${product.price} kr</p>
+              <p>Kategori: ${product.category}</p>
               <img src="${product.img.url}" alt="${product.img.alt}">
               <div>
                 
@@ -216,37 +213,9 @@ products.forEach(product => {
 
 
 
-  function increaseProductCount(e) {
-    const productId = Number(e.target.id.replace('increase-', ''));
-    const foundProductIndex = products.findIndex(product => product.id === productId);
-    products[foundProductIndex].amount += 1;
-    printProductsList();
-  
-  }
-  
-  function decreaseProductCount(e) {
-    console.log('click');
-    const productId = Number(e.target.id.replace('decrease-', ''));
-    const foundProductIndex = products.findIndex(product => product.id === productId);
+// Funktion för att minska respektive öka antalet av vald produkt.
+function printProductsList() {
     
-    if (foundProductIndex !== -1 && products[foundProductIndex].amount > 0) {
-      // Minska mängden med 1 om den är större än 0
-      products[foundProductIndex].amount--;
-    }
-  
-  
-  printProductsList();
-  
-  }
-  
-  // Initiera listan
-  printProductsList();
-
-
-
-
-  function printProductsList() {
-    // Rensa div:en på befintliga produkter innan utskrift av uppdaterad information
     productsListDiv.innerHTML = '';
   
     products.forEach(product => {
@@ -256,6 +225,7 @@ products.forEach(product => {
         <article class="product">
           <h3>${product.name}</h3>
           <p>${product.price} kr</p>
+          <p>Kategori: ${product.category}</p>
           <img src="${product.img.url}" alt="${product.img.alt}">
           <div>
             
@@ -269,8 +239,6 @@ products.forEach(product => {
     });
   
  
-    
-
   const increaseButtons = document.querySelectorAll('button.increase');
   increaseButtons.forEach(button => {
     button.addEventListener('click', increaseProductCount);
@@ -283,7 +251,7 @@ products.forEach(product => {
  
 
 }
-
+  //Öka antalet
   function increaseProductCount(e) {
   const productId = Number(e.target.id.replace('increase-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
@@ -292,6 +260,7 @@ products.forEach(product => {
 
 }
 
+//Minska antalet
 function decreaseProductCount(e) {
   console.log('click');
   const productId = Number(e.target.id.replace('decrease-', ''));
