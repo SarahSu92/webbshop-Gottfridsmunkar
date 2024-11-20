@@ -61,37 +61,19 @@
  <section>
 <h2>Produkter</h2>
 <div id="product-list"></div>
+
  </section>
  
 </main>
 
 
 
-<section id="cartSection">
-  <h3>Din Varukorg</h3><span class="cart">Kundsupport: 08-52012345</span>
-  <ul id="cartItems">
-    <!-- Här kommer munkarna att listas dynamiskt -->
-  </ul>
+
   
-  <p class="totsum">Total summa: <span id="totalAmount">0 kr</span></p>
-  <div id="discountLine" style="display: none;">
-    <p class="discountText">Måndagsrabatt. 10% p hela beställningen</p>
-    <p class="discountText">Helgpåslag: 15 % på munkarna</p>
-  </div>
-  <p class="totprice"><strong>Att betala: <span id="finalAmount">0 kr</span></strong></p>
+  <div class="cart" id="cart">Din varukorg är tom!</div>
+
+ 
   
-  <span class="items">Produkt</span>
-  <span class="items">Antal</span>
-  <span class="items">Styckpris</span>
-  <span class="items">Delsumma</span>
-  
-    <label for="delivery_date">Önskat leveransdatum:</label>
-  <input type="date" id="delivery_date" name="delivery_date"><br>
-
-
-
-
-
   <form action="submit_order.php" method="POST">
   <h3>Beställningsformulär</h3>
   <label for="fname">Förnamn</label>

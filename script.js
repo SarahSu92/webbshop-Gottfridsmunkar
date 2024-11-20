@@ -1,4 +1,4 @@
-//Produkterna
+//products
 
 const products = [
     {
@@ -140,7 +140,49 @@ const productsListDiv = document.querySelector
 ('#product-list');
 
 
-//Produkter egenskaperna, raiting, pris.
+
+
+/*
+x Skapa en varukorgs sammanställning
+x skapa en varukorg cart
+x funktion för att lägga till produkter
+x lägg till bilder för varje produkt
+x uppdatera kundkorgen när en vara läggs till, animation
+- funktion för att ta bort en vara från kundkorgen
+- funktion för att uppdatera kundkorgens visning totalbelopp osv
+x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
+*/
+
+const cart = document.querySelector('#cart');
+
+function updateAndPrintCart() {
+  
+  
+  const purchasedProducts = products.filter((product) => product.amount > 0);
+  console.log(purchasedProducts);
+  
+   // if the cart is empty
+   if (purchasedProducts.length === 0) {
+    cart.innerHTML = '<h3>Varukorgen</h3><p>Varukorgen är tom!</p>';
+    return; // finish if the cart is empty
+  }
+
+  // if there is products show them
+  cart.innerHTML = '<h3>Varukorgen</h3>';
+  purchasedProducts.forEach(product => {
+    cart.innerHTML += `
+      <div>
+        <img src="${product.img.url}" alt="${product.img.alt}">
+        ${product.name}: ${product.amount} st - ${product.amount * product.price} kr
+      </div>
+    `;
+  });
+}
+
+ 
+
+
+//products
 products.forEach(product => {
     productsListDiv.innerHTML += 
 `
@@ -152,10 +194,9 @@ products.forEach(product => {
 <p>Kategori: ${product.category}</p>
 
 <div>
-<div>
-<button class="decrease" id="decrease-${product.id}">decrease</button>
-<input type="number" min="0" value="${product.amount}" id="input-${product.id}">
-<button class="increase" id="increase-${product.id}">increase</button>
+<button class="decrease" id="decrease-${product.id}">-</button>
+<button class="increase" id="increase-${product.id}">+</button>
+<span>${product.amount}</span>
 </div>
 
 </article>
@@ -166,7 +207,11 @@ products.forEach(product => {
 
 
 
-//Sortera produkterna utifrån namn, pris, kategori och rating 
+
+
+
+
+//sort products by price, name, raiting.
     function sortProducts(products, sortBy, ascending = true) {
       return products.sort((a, b) => {
           let comparison = typeof a[sortBy] === "string"
@@ -195,8 +240,8 @@ products.forEach(product => {
               <p>${product.price} kr</p>
               <p>Kategori: ${product.category}</p>
               <img src="${product.img.url}" alt="${product.img.alt}">
-              <div>
-                
+              <p>${product.raiting}</p>
+                <div>
                 <button class="decrease" id="decrease-${product.id}">-</button>
                 <button class="increase" id="increase-${product.id}">+</button>
                 <span>${product.amount}</span>
@@ -208,12 +253,8 @@ products.forEach(product => {
       });
   }
 
-  // Ladda produkterna vid sidladdning
-  updateProductList();
-
-
-
-// Funktion för att minska respektive öka antalet av vald produkt.
+  
+ // function to increase and decrease amount.
 function printProductsList() {
     
     productsListDiv.innerHTML = '';
@@ -227,8 +268,8 @@ function printProductsList() {
           <p>${product.price} kr</p>
           <p>Kategori: ${product.category}</p>
           <img src="${product.img.url}" alt="${product.img.alt}">
+          <p>${product.raiting}</p>
           <div>
-            
             <button class="decrease" id="decrease-${product.id}">-</button>
             <button class="increase" id="increase-${product.id}">+</button>
             <span>${product.amount}</span>
@@ -238,45 +279,58 @@ function printProductsList() {
       `
     });
   
- 
   const increaseButtons = document.querySelectorAll('button.increase');
   increaseButtons.forEach(button => {
     button.addEventListener('click', increaseProductCount);
+    
   });
 
   const decreaseButtons = document.querySelectorAll('button.decrease');
   decreaseButtons.forEach(button => {
     button.addEventListener('click', decreaseProductCount);
+    
   });
  
-
 }
-  //Öka antalet
+
+  printProductsList();
+
+
+  //increase amount
   function increaseProductCount(e) {
   const productId = Number(e.target.id.replace('increase-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
-  products[foundProductIndex].amount += 1;
-  printProductsList();
+  
+  
 
+
+// increase amount with +1
+  products[foundProductIndex].amount += 1;
+  
+  printProductsList();
+  updateAndPrintCart();
+  
 }
 
-//Minska antalet
+//decrease amount
 function decreaseProductCount(e) {
-  console.log('click');
+
   const productId = Number(e.target.id.replace('decrease-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
   
   if (foundProductIndex !== -1 && products[foundProductIndex].amount > 0) {
-    // Minska mängden med 1 om den är större än 0
+    
     products[foundProductIndex].amount--;
+    
   }
 
-
-printProductsList();
+  printProductsList();
+  updateAndPrintCart();
+  
 
 }
 
-// Initiera listan
-printProductsList();
+
+
 
 
