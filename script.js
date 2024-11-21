@@ -140,48 +140,6 @@ const productsListDiv = document.querySelector
 ('#product-list');
 
 
-
-
-/*
-x Skapa en varukorgs sammanställning
-x skapa en varukorg cart
-x funktion för att lägga till produkter
-x lägg till bilder för varje produkt
-x uppdatera kundkorgen när en vara läggs till, animation
-- funktion för att ta bort en vara från kundkorgen
-- funktion för att uppdatera kundkorgens visning totalbelopp osv
-x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
-*/
-
-const cart = document.querySelector('#cart');
-
-function updateAndPrintCart() {
-  
-  
-  const purchasedProducts = products.filter((product) => product.amount > 0);
-  console.log(purchasedProducts);
-  
-   // if the cart is empty
-   if (purchasedProducts.length === 0) {
-    cart.innerHTML = '<h3>Varukorgen</h3><p>Varukorgen är tom!</p>';
-    return; // finish if the cart is empty
-  }
-
-  // if there is products show them
-  cart.innerHTML = '<h3>Varukorgen</h3>';
-  purchasedProducts.forEach(product => {
-    cart.innerHTML += `
-      <div>
-        <img src="${product.img.url}" alt="${product.img.alt}">
-        ${product.name}: ${product.amount} st - ${product.amount * product.price} kr
-      </div>
-    `;
-  });
-}
-
- 
-
-
 //products
 products.forEach(product => {
     productsListDiv.innerHTML += 
@@ -207,7 +165,10 @@ products.forEach(product => {
 
 
 
-
+/*
+Raiting
+- lägga till stjärnor istället för siffror
+*/
 
 
 
@@ -324,13 +285,110 @@ function decreaseProductCount(e) {
     
   }
 
+  updateAndPrintCart(); 
   printProductsList();
-  updateAndPrintCart();
   
 
 }
 
 
 
+/*
+x Skapa en varukorgs sammanställning
+x skapa en varukorg cart
+x funktion för att lägga till produkter
+x lägg till bilder för varje produkt
+x uppdatera kundkorgen när en vara läggs till, animation
+- funktion för att ta bort en vara från kundkorgen
+- funktion för att uppdatera kundkorgens visning totalbelopp osv
+x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
+*/
 
+const cart = document.querySelector('#cart');
+
+function updateAndPrintCart() {
+  
+  
+  const purchasedProducts = products.filter((product) => product.amount > 0);
+  console.log(purchasedProducts);
+  
+   // if the cart is empty
+   if (purchasedProducts.length === 0) {
+    cart.innerHTML = '<h3>Varukorgen</h3><p>Varukorgen är tom!</p>';
+    return; // finish if the cart is empty
+  }
+
+  // if there is products show them
+  cart.innerHTML = '<h3>Varukorgen</h3>';
+  purchasedProducts.forEach(product => {
+    cart.innerHTML += `
+      <div>
+        <img src="${product.img.url}" alt="${product.img.alt}">
+        ${product.name}: ${product.amount} st - ${product.amount * product.price} kr
+        <button class="delete">Ta bort</button>
+      </div>
+      
+    `;
+  });
+
+  
+}
+
+//form 
+// Få referenser till formulärelement
+const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
+const cardFields = document.getElementById('card-fields');
+const invoiceFields = document.getElementById('invoice-fields');
+const submitBtn = document.getElementById('submit-btn');
+const resetBtn = document.getElementById('reset-btn');
+const form = document.getElementById('order-form');
+const personalNumberInput = document.getElementById('personal-number');
+const privacyPolicyCheckbox = document.getElementById('privacy-policy');
+
+// Funktion för att visa rätt fält beroende på betalsätt
+paymentMethodRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+        if (document.getElementById('card').checked) {
+            cardFields.style.display = 'block';
+            invoiceFields.style.display = 'none';
+        } else if (document.getElementById('invoice').checked) {
+            invoiceFields.style.display = 'block';
+            cardFields.style.display = 'none';
+        }
+    });
+});
+
+// Funktion för att validera personnummer
+personalNumberInput.addEventListener('input', () => {
+    const regex = /^\d{6}-\d{4}$/;
+    if (!regex.test(personalNumberInput.value)) {
+        personalNumberInput.setCustomValidity('Ange ett giltigt personnummer (ÅÅMMDD-XXXX).');
+    } else {
+        personalNumberInput.setCustomValidity('');
+    }
+});
+
+// Rensa formuläret
+resetBtn.addEventListener('click', () => {
+    form.reset();
+    cardFields.style.display = 'none';
+    invoiceFields.style.display = 'none';
+    submitBtn.disabled = true;  // Inaktivera knappen tills formuläret är korrekt ifyllt
+});
+
+form.addEventListener('input', () => {
+  // Kontrollera om formuläret är giltigt (alla obligatoriska fält är korrekt ifyllda)
+  const isFormValid = form.checkValidity() && privacyPolicyCheckbox.checked;
+  submitBtn.disabled = !isFormValid;
+});
+
+// Lyssna på förändringar i checkboxen
+privacyPolicyCheckbox.addEventListener('change', () => {
+  // Uppdatera knappen baserat på om checkboxen är ikryssad
+  const isFormValid = form.checkValidity() && privacyPolicyCheckbox.checked;
+  submitBtn.disabled = !isFormValid;
+});
+
+// Kontrollera om knappen ska vara aktiverad eller inte vid sidladdning
+submitBtn.disabled = !form.checkValidity() || !privacyPolicyCheckbox.checked;
 

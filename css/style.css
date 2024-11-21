@@ -59,33 +59,6 @@ img {
   padding: 10px;
 }
 
-/* Grundstil för totalsumman */
-.total-amount {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333; /* Standardfärg */
-  transition: all 0.3s ease; /* Mjuk övergång för alla förändringar */
-}
-
-/* Färgändring och storleksskiftning vid uppdatering */
-.total-amount.updated {
-  color: #4CAF50; /* Grön färg för att markera uppdatering */
-  font-size: 26px; /* Öka storleken för en visuell effekt */
-  animation: pulse 0.6s ease-in-out; /* Pulserande effekt */
-}
-
-/* Pulserande animation */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1); /* Öka storleken något */
-  }
-  100% {
-    transform: scale(1); /* Återgå till normal storlek */
-  }
-}
 /* Fokusindikation för knappar och interaktiva element */
 input:focus, button:focus, select:focus, textarea:focus {
   outline: none; /* Ta bort standardfokusram */
@@ -93,29 +66,131 @@ input:focus, button:focus, select:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(77, 144, 254, 0.6); /* Tydlig skugga för fokus */
 }
 
-input:invalid, select:invalid {
+form {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type=text], input[type=email], input[type=tel], input[type=password], input[type=radio], input[type=checkbox], input[type=number], input[type=date], input[type=tel], select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=radio], input[type=checkbox] {
+  width: auto;
+  margin-right: 10px;
+}
+
+input:invalid {
   border-color: red;
 }
 
-input:valid, select:valid {
+input:valid {
   border-color: green;
 }
 
-.error {
+/* Specifik styling för felmeddelanden */
+.error-message {
   color: red;
-  font-size: 0.9em;
-  margin-top: 5px;
+  font-size: 12px;
+  margin-bottom: 10px;
 }
 
-.submitBtn:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
+input:invalid + .error-message {
+  display: block;
 }
 
-.discountText {
-  color: #e74c3c; /* Röd färg för att markera rabatten */
+/* Skicka och rensa-knappar */
+button[type=submit], button[type=button] {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+button[type=submit]:disabled {
+  background-color: grey;
+}
+
+button[type=submit]:not(:disabled):hover {
+  background-color: #0056b3;
+}
+
+button[type=button]:hover {
+  background-color: #28a745;
+}
+
+/* Betalsätt och specifika fält */
+#card-fields, #invoice-fields {
+  display: none;
+  margin-top: 20px;
+}
+
+input[type=radio]:checked + label {
   font-weight: bold;
-  margin-top: 10px;
+}
+
+input[type=radio]:checked + label {
+  color: #007BFF;
+}
+
+input[type=checkbox]:checked + label {
+  font-weight: normal;
+}
+
+input[type=radio]:disabled {
+  background-color: #d3d3d3;
+}
+
+/* Layoutjustering för felmeddelanden och validering */
+input:invalid {
+  border-color: red;
+}
+
+input:valid {
+  border-color: green;
+}
+
+/* Styling för rabattkod */
+#discount-code {
+  width: 50%;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Styling för "Rensa" knapp */
+.reset {
+  background-color: rgb(246, 103, 14);
+  cursor: pointer;
+}
+
+#submit-btn:disabled {
+  background-color: #d3d3d3;
 }
 
 @media screen and (min-width: 375px) {
