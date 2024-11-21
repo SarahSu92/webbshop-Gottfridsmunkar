@@ -335,7 +335,7 @@ function updateAndPrintCart() {
 }
 
 //form 
-// Få referenser till formulärelement
+
 const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
 const cardFields = document.getElementById('card-fields');
 const invoiceFields = document.getElementById('invoice-fields');
@@ -345,7 +345,7 @@ const form = document.getElementById('order-form');
 const personalNumberInput = document.getElementById('personal-number');
 const privacyPolicyCheckbox = document.getElementById('privacy-policy');
 
-// Funktion för att visa rätt fält beroende på betalsätt
+//function for pay alternitive
 paymentMethodRadios.forEach(radio => {
     radio.addEventListener('change', () => {
         if (document.getElementById('card').checked) {
@@ -358,7 +358,7 @@ paymentMethodRadios.forEach(radio => {
     });
 });
 
-// Funktion för att validera personnummer
+// function for validation of personalid
 personalNumberInput.addEventListener('input', () => {
     const regex = /^\d{6}-\d{4}$/;
     if (!regex.test(personalNumberInput.value)) {
@@ -368,7 +368,7 @@ personalNumberInput.addEventListener('input', () => {
     }
 });
 
-// Rensa formuläret
+// earase form
 resetBtn.addEventListener('click', () => {
     form.reset();
     cardFields.style.display = 'none';
@@ -377,18 +377,21 @@ resetBtn.addEventListener('click', () => {
 });
 
 form.addEventListener('input', () => {
-  // Kontrollera om formuläret är giltigt (alla obligatoriska fält är korrekt ifyllda)
+  // check form for validation
   const isFormValid = form.checkValidity() && privacyPolicyCheckbox.checked;
   submitBtn.disabled = !isFormValid;
 });
 
-// Lyssna på förändringar i checkboxen
+
 privacyPolicyCheckbox.addEventListener('change', () => {
-  // Uppdatera knappen baserat på om checkboxen är ikryssad
+  // update submit button when validation is accepted
   const isFormValid = form.checkValidity() && privacyPolicyCheckbox.checked;
   submitBtn.disabled = !isFormValid;
 });
 
-// Kontrollera om knappen ska vara aktiverad eller inte vid sidladdning
+
 submitBtn.disabled = !form.checkValidity() || !privacyPolicyCheckbox.checked;
+
+
+
 

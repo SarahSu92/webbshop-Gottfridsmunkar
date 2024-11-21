@@ -31,12 +31,12 @@
   <h1>Gottfrids Munkar Onlinebutik</h1>
   <nav>
     <ul class="nav">
-      <li>Produkter</li>
-      <li>Beställning</li>
+      <li><a href="#products">Produkter</a></li>
+      <li><a href="#order">Beställning</a></li>
       </ul>
   </nav>
 
-  <a href="#cartSection" id="cartLink" id="updateCart" onclick="updateCart()">
+  <a href="#cart" id="cartLink" id="updateCart" onclick="updateCart()">
     <span class="material-symbols-outlined">shopping_cart</span>
   </a>
 
@@ -45,8 +45,7 @@
 <main>
 
 <section>
-  <h3>Sortera på:</h3>
-  <label for="sortCriteria">Sortera efter:</label>
+<label for="sortCriteria">Sortera efter:</label>
     <select id="sortCriteria">
         <option value="name">Namn</option>
         <option value="price">Pris</option>
@@ -56,21 +55,22 @@
     <label>
         <input type="checkbox" id="descending" /> Fallande ordning
     </label>
-    <button onclick="updateProductList()">Sortera</button>
+    <button class="updatelist" onclick="updateProductList()">Sortera</button>
 </section>
 
  <section>
-<h2>Produkter</h2>
+<h2 id="products">Produkter</h2>
 <div id="product-list"></div>
 
  </section>
  
 </main>
 
-<div class="cart" id="cart">Din varukorg är tom!</div>
+<div class="cart"  id="cart">Din varukorg är tom!</div>
 
  <form action="submit_order.php" id="order-form" method="POST">
-  <h3>Beställningsformulär</h3>
+  <h3 id="order">Beställningsformulär</h3>
+
   <label for="fname">Förnamn</label>
   <input type="text" id="fname" name="fname" required><br>
   <span class="error" id="fnameError" role="alert" aria-live="assertive"></span><br>

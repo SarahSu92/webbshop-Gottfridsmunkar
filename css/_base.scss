@@ -17,8 +17,9 @@ h1 {
 
 
 nav{ 
-  background-color: rgb(178, 244, 207);
-  height: 30px;
+  background-color: #007bfe;
+  height: 40px;
+  border-radius: 10px;
 }
 
 .nav {
@@ -38,6 +39,10 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 
 
 .container {
@@ -48,8 +53,6 @@ h2 {
 
 .product {
   flex: 0 1 calc(50% - 10px); 
-  
-  
   padding: 10px;
   margin-bottom: 10px;
   border: 2px solid black;
@@ -70,20 +73,34 @@ h2 {
     background-color: lightskyblue;
     text-align: center;
     padding: 10px;
+    margin-bottom: 40px;
   }
   
+a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
 
 
-
-  /* Fokusindikation för knappar och interaktiva element */
+  /* Focus for buttons and other interactive elements */
     input:focus, button:focus, select:focus, textarea:focus {
-    outline: none;  /* Ta bort standardfokusram */
-    border: 2px solid #4D90FE; /* Blå kant när elementet är fokuserat */
-    box-shadow: 0 0 5px rgba(77, 144, 254, 0.6); /* Tydlig skugga för fokus */
+    outline: none;  
+    border: 2px solid #4D90FE; 
+    box-shadow: 0 0 5px rgba(77, 144, 254, 0.6); 
   }
 
 
+#sortCriteria {
+  width: 10%;
+}
 
+.updatelist {
+  background-color: black;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+}
 
 form {
   background-color: #fff;
@@ -208,6 +225,7 @@ label {
 .reset  {
   background-color: rgb(246, 103, 14);
   cursor: pointer;
+  padding: 5px;
   
 }
 
