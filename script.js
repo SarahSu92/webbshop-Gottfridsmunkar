@@ -150,7 +150,7 @@ products.forEach(product => {
 <h3>${product.name}</h3>
 <p>${product.price} kr</p>
 <p>Kategori: ${product.category}</p>
-
+<p>${getRatingHtml(product.rating)}&#11088;</p>
 <div>
 <button class="decrease" id="decrease-${product.id}">-</button>
 <button class="increase" id="increase-${product.id}">+</button>
@@ -165,11 +165,20 @@ products.forEach(product => {
 
 
 
-/*
-Raiting
-- lägga till stjärnor istället för siffror
-*/
+//Får inte till raitingen?? Vet inte vad jag gör för fel. 😇😇😇😇
+function getRatingHtml(rating) {
+  
+  const isHalf = String(rating).indexOf('.');
 
+  let html = '';
+  for (let i = 0; i < rating; i++) {
+    html += `<span>&#11088;</span>`;
+  }
+
+  return html;
+}
+  
+ 
 
 
 //sort products by price, name, raiting.
@@ -201,7 +210,7 @@ Raiting
               <p>${product.price} kr</p>
               <p>Kategori: ${product.category}</p>
               <img src="${product.img.url}" alt="${product.img.alt}">
-              <p>${product.raiting}</p>
+              <p>${getRatingHtml(product.rating)}&#11088;</p>
                 <div>
                 <button class="decrease" id="decrease-${product.id}">-</button>
                 <button class="increase" id="increase-${product.id}">+</button>
@@ -229,7 +238,7 @@ function printProductsList() {
           <p>${product.price} kr</p>
           <p>Kategori: ${product.category}</p>
           <img src="${product.img.url}" alt="${product.img.alt}">
-          <p>${product.raiting}</p>
+          <p>${getRatingHtml(product.rating)}&#11088;</p>
           <div>
             <button class="decrease" id="decrease-${product.id}">-</button>
             <button class="increase" id="increase-${product.id}">+</button>
@@ -252,9 +261,13 @@ function printProductsList() {
     
   });
  
+ 
+
 }
 
+
   printProductsList();
+  
 
 
   //increase amount
@@ -263,14 +276,20 @@ function printProductsList() {
   const foundProductIndex = products.findIndex(product => product.id === productId);
   
   
+ const keepfocusBtn = e.target.id;
 
 
 // increase amount with +1
   products[foundProductIndex].amount += 1;
+
+
+  
   
   printProductsList();
+  document.querySelector(`#${keepfocusBtn}`).focus();
   updateAndPrintCart();
   
+ 
 }
 
 //decrease amount
@@ -278,19 +297,23 @@ function decreaseProductCount(e) {
 
   const productId = Number(e.target.id.replace('decrease-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
-  
-  if (foundProductIndex !== -1 && products[foundProductIndex].amount > 0) {
-    
-    products[foundProductIndex].amount--;
-    
+  const keepfocusBtn = e.target.id;                     
+ 
+
+  // decrease amount with -1
+  products[foundProductIndex].amount -= 1;
+  if (products[foundProductIndex].amount < 0) {
+    products[foundProductIndex].amount = 0;
   }
-
-  updateAndPrintCart(); 
-  printProductsList();
   
+  printProductsList();
+  document.querySelector(`#${keepfocusBtn}`).focus();
+  updateAndPrintCart(); 
 
+  
 }
 
+printProductsList();
 
 
 /*
@@ -300,6 +323,7 @@ x funktion för att lägga till produkter
 x lägg till bilder för varje produkt
 x uppdatera kundkorgen när en vara läggs till, animation
 - funktion för att ta bort en vara från kundkorgen
+- Totalsumman ska uppdateras baserat på ändringar som sker i antal beställda munkar i realtid
 - funktion för att uppdatera kundkorgens visning totalbelopp osv
 x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
 */
