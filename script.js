@@ -168,7 +168,7 @@ products.forEach(product => {
 //Får inte till raitingen?? Vet inte vad jag gör för fel. 😇😇😇😇
 function getRatingHtml(rating) {
   
-  const isHalf = String(rating).indexOf('.');
+  const raiting = String(rating).indexOf('.');
 
   let html = '';
   for (let i = 0; i < rating; i++) {

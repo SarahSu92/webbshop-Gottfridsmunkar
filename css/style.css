@@ -12,6 +12,7 @@ h1 {
 .material-symbols-outlined {
   margin-left: 420px;
   padding-top: 20px;
+  color: black;
 }
 
 nav {
@@ -64,7 +65,7 @@ img {
   margin-bottom: 40px;
 }
 
-a {
+.links {
   text-decoration: none;
   color: white;
   padding: 10px;

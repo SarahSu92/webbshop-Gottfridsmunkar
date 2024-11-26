@@ -13,6 +13,7 @@ h1 {
 .material-symbols-outlined {
   margin-left: 420px;
   padding-top: 20px;
+  color: black;
 }
 
 
@@ -45,6 +46,7 @@ h3 {
 
 
 
+
 .container {
   display: flex; 
   justify-content: center;
@@ -57,6 +59,7 @@ h3 {
   margin-bottom: 10px;
   border: 2px solid black;
   box-sizing: border-box; 
+ 
   
 }
 
@@ -76,7 +79,7 @@ h3 {
     margin-bottom: 40px;
   }
   
-a {
+.links {
   text-decoration: none;
   color: white;
   padding: 10px;
