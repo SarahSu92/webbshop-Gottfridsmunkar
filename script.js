@@ -261,7 +261,6 @@ function printProductsList() {
     
   });
  
- 
 
 }
 
@@ -297,8 +296,8 @@ function decreaseProductCount(e) {
 
   const productId = Number(e.target.id.replace('decrease-', ''));
   const foundProductIndex = products.findIndex(product => product.id === productId);
-  const keepfocusBtn = e.target.id;                     
- 
+  const keepfocusBtn = e.target.id;  
+  
 
   // decrease amount with -1
   products[foundProductIndex].amount -= 1;
@@ -309,6 +308,8 @@ function decreaseProductCount(e) {
   printProductsList();
   document.querySelector(`#${keepfocusBtn}`).focus();
   updateAndPrintCart(); 
+
+   
 
   
 }
@@ -324,7 +325,7 @@ x lägg till bilder för varje produkt
 x uppdatera kundkorgen när en vara läggs till, animation
 - funktion för att ta bort en vara från kundkorgen
 - Totalsumman ska uppdateras baserat på ändringar som sker i antal beställda munkar i realtid
-- funktion för att uppdatera kundkorgens visning totalbelopp osv
+x funktion för att uppdatera kundkorgens visning totalbelopp osv
 x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
 */
 
@@ -336,9 +337,11 @@ function updateAndPrintCart() {
   const purchasedProducts = products.filter((product) => product.amount > 0);
   console.log(purchasedProducts);
   
+  
    // if the cart is empty
    if (purchasedProducts.length === 0) {
-    cart.innerHTML = '<h3>Varukorgen</h3><p>Varukorgen är tom!</p>';
+    cart.innerHTML = '<he>Varukorgen</h3><p>Varukorgen är tom!</p>';
+    totalElement.textContent = "Totalt 0 kr";
     return; // finish if the cart is empty
   }
 
@@ -346,17 +349,20 @@ function updateAndPrintCart() {
   cart.innerHTML = '<h3>Varukorgen</h3>';
   purchasedProducts.forEach(product => {
     cart.innerHTML += `
-      <div>
+      <article>
         <img src="${product.img.url}" alt="${product.img.alt}">
-        ${product.name}: ${product.amount} st - ${product.amount * product.price} kr
-        <button class="delete">Ta bort</button>
-      </div>
+        <span>${product.name}</span> | <span>${product.amount} st</span> | <span>${product.amount * product.price} kr</span>
+      </article>
+      
       
     `;
   });
 
-  
+
+ 
 }
+
+
 
 //form 
 
@@ -368,6 +374,7 @@ const resetBtn = document.getElementById('reset-btn');
 const form = document.getElementById('order-form');
 const personalNumberInput = document.getElementById('personal-number');
 const privacyPolicyCheckbox = document.getElementById('privacy-policy');
+const orderConfirmation= document.querySelector('#msg');
 
 //function for pay alternitive
 paymentMethodRadios.forEach(radio => {
@@ -397,7 +404,7 @@ resetBtn.addEventListener('click', () => {
     form.reset();
     cardFields.style.display = 'none';
     invoiceFields.style.display = 'none';
-    submitBtn.disabled = true;  // Inaktivera knappen tills formuläret är korrekt ifyllt
+    submitBtn.disabled = true;  // inactive button until form is correct validated
 });
 
 form.addEventListener('input', () => {
@@ -411,10 +418,33 @@ privacyPolicyCheckbox.addEventListener('change', () => {
   // update submit button when validation is accepted
   const isFormValid = form.checkValidity() && privacyPolicyCheckbox.checked;
   submitBtn.disabled = !isFormValid;
+  
 });
 
-
 submitBtn.disabled = !form.checkValidity() || !privacyPolicyCheckbox.checked;
+
+// show confiramtion without leaving the page
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // prevent form to be send
+
+  if (form.checkValidity() && privacyPolicyCheckbox.checked) {
+      // show order confiramtiion message
+      msg.style.display = 'block';
+      msg.textContent = 'Tack för din beställning! Din beställning har bekräftats.';
+      
+      // restore message
+      form.reset();
+      cardFields.style.display = 'none';
+      invoiceFields.style.display = 'none';
+      submitBtn.disabled = true; // inactive button until form is correct validated
+
+      // Hide confiramtion message
+      setTimeout(() => {
+          msg.style.display = 'none';
+      }, 10000); // Hide after 10 seconds
+  }
+});
+
 
 
 
