@@ -9,10 +9,32 @@ h1 {
   text-align: center;
 }
 
-.material-symbols-outlined {
-  margin-left: 420px;
-  padding-top: 20px;
-  color: black;
+img {
+  width: 300px;
+  height: 250px;
+  display: block;
+}
+
+.shoppingcart {
+  position: relative;
+  position: relative;
+  display: inline-block;
+}
+
+#cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  font-size: 1rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 nav {
@@ -52,12 +74,6 @@ h3 {
   box-sizing: border-box;
 }
 
-img {
-  width: 300px;
-  height: 250px;
-  display: block;
-}
-
 .cart {
   background-color: lightskyblue;
   text-align: center;
@@ -72,13 +88,16 @@ img {
 }
 
 /* Focus for buttons and other interactive elements */
-input:focus, button:focus, select:focus, textarea:focus {
+input:focus,
+button:focus,
+select:focus,
+textarea:focus {
   outline: none;
   border: 2px solid #4D90FE;
   box-shadow: 0 0 5px rgba(77, 144, 254, 0.6);
 }
 
-#sortCriteria {
+.sortCriteria {
   width: 10%;
 }
 
@@ -104,7 +123,16 @@ label {
   margin-bottom: 5px;
 }
 
-input[type=text], input[type=email], input[type=tel], input[type=password], input[type=radio], input[type=checkbox], input[type=number], input[type=date], input[type=tel], select {
+input[type=text],
+input[type=email],
+input[type=tel],
+input[type=password],
+input[type=radio],
+input[type=checkbox],
+input[type=number],
+input[type=date],
+input[type=tel],
+select {
   width: 100%;
   padding: 10px;
   margin: 10px 0 20px;
@@ -113,7 +141,8 @@ input[type=text], input[type=email], input[type=tel], input[type=password], inpu
   box-sizing: border-box;
 }
 
-input[type=radio], input[type=checkbox] {
+input[type=radio],
+input[type=checkbox] {
   width: auto;
   margin-right: 10px;
 }
@@ -129,7 +158,7 @@ input:valid {
 /* style for error msg */
 .error-message {
   color: red;
-  font-size: 12px;
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 
@@ -138,12 +167,13 @@ input:invalid + .error-message {
 }
 
 /* send/submit reset buttons */
-button[type=submit], button[type=button] {
+button[type=submit],
+button[type=button] {
   background-color: #007BFF;
   color: #fff;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 4px;
   width: 100%;
@@ -164,7 +194,8 @@ button[type=button]:hover {
 }
 
 /* pay  */
-#card-fields, #invoice-fields {
+.card-fields,
+.invoice-fields {
   display: none;
   margin-top: 20px;
 }
@@ -223,6 +254,17 @@ label {
   color: green;
   margin-top: 40px;
   text-align: center;
+}
+
+.basket {
+  font-weight: bold;
+  padding: 40px;
+}
+
+.support {
+  margin-left: 400px;
+  font-weight: bold;
+  padding: 40px;
 }
 
 @media screen and (min-width: 375px) {
