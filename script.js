@@ -272,22 +272,9 @@ function decreaseProductCount(e) {
 
 printProductsList();
 
-/*
-x Skapa en varukorgs sammanställning
-x skapa en varukorg cart
-x funktion för att lägga till produkter
-x lägg till bilder för varje produkt
-x uppdatera kundkorgen när en vara läggs till, animation
-- funktion för att ta bort en vara från kundkorgen
-- Totalsumman ska uppdateras baserat på ändringar som sker i antal beställda munkar i realtid
-x funktion för att uppdatera kundkorgens visning totalbelopp osv
-x om det inte finns några produkter så ska det skrivas ut att varukorgen är tom
-*/
-
 const cart = document.querySelector('#cart');
 
 function updateAndPrintCart() {
-  const cartProducts = getCartProducts();
   const purchasedProducts = products.filter((product) => product.amount > 0);
   const cartCountElement = document.getElementById('cart-count');
   const totalItemsInCart = products.reduce(
@@ -296,32 +283,60 @@ function updateAndPrintCart() {
   );
   cartCountElement.textContent = totalItemsInCart;
 
-  // if the cart is empty
+  // if cart is empty
   if (purchasedProducts.length === 0) {
     cart.innerHTML =
       '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span><p>Varukorgen är tom!</p>';
-
-    return; // finish if the cart is empty
+    return;
   }
 
-  // if there is products show them
+  //cart products
   cart.innerHTML =
     '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span>';
   purchasedProducts.forEach((product) => {
     cart.innerHTML += `
       <article>
         <img src="${product.img.url}" alt="${product.img.alt}">
-        <span>${product.name}</span> | <span>${
-      product.amount
-    } st</span> | <span>${product.amount * product.price} kr</span>
-        <button class="remove-btn" data-id="${product.id}">Ta bort</button>
+        <span>${product.name}</span> | <span>${product.amount} st</span> | 
+        <span>${product.amount * product.price} kr</span>
+        <button class="item-decrease" data-id="${product.id}">-</button>
+      <button class="item-increase" data-id="${product.id}">+</button>
       </article>
-      
-    `;
+      `;
   });
- 
+
+  // Lägg till event-lyssnare för att hantera ökning och minskning
+document.querySelectorAll('.item-decrease').forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const productId = Number(e.target.getAttribute('data-id'));
+    updateProductAmount(productId, -1);
+  });
+});
+
+document.querySelectorAll('.item-increase').forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const productId = Number(e.target.getAttribute('data-id'));
+    updateProductAmount(productId, 1);
+  });
+});
+
+// Funktion för att uppdatera mängden och rendera om
+function updateProductAmount(productId, change) {
+  const productIndex = products.findIndex((product) => product.id === productId);
+  if (productIndex !== -1) {
+    products[productIndex].amount += change;
+    if (products[productIndex].amount < 0) {
+      products[productIndex].amount = 0; // Förhindra negativa värden
+    }
+  }
+  updateAndPrintCart();
 }
 
+  }
+
+
+
+//form
 const paymentMethodRadios = document.querySelectorAll('input[name="payment-method"]');
 const cardFields = document.getElementById('card-fields');
 const invoiceFields = document.getElementById('invoice-fields');
@@ -391,58 +406,4 @@ privacyPolicyCheckbox.addEventListener('change', () => {
   submitBtn.disabled = !isFormValid;
 });
 
-//funtion to connect cart with orderconfirmation
-function getCartProducts() {
-  return products.filter((product) => product.amount > 0);
-}
 
-//orderconfirmation
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  if (form.checkValidity() && privacyPolicyCheckbox.checked) {
-    // delivery date
-    const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 3);
-    const formattedDate = deliveryDate.toLocaleDateString('sv-SE', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
-
-    // get products from cart
-    const cartProducts = getCartProducts();
-
-    if (cartProducts.length === 0) {
-      alert(
-        'Varukorgen är tom. Lägg till produkter innan du skickar beställningen.'
-      );
-      return;
-    }
-
-    // oderconfig
-    let confirmationMessage = '<strong>Tack för din beställning!</strong><br>';
-    confirmationMessage += '<ul>';
-    cartProducts.forEach((product) => {
-      confirmationMessage += `<li>${product.name} - ${product.amount} st - ${product.price} kr/st</li>`;
-    });
-    confirmationMessage += '</ul>';
-
-    const total = cartProducts.reduce(
-      (sum, product) => sum + product.amount * product.price,
-      0
-    );
-    confirmationMessage += `<strong>Totalt: ${total} kr</strong><br>`;
-    confirmationMessage += `Beräknad leverans: ${formattedDate}`;
-
-    // show orderconfirmation
-    orderConfirmation.style.display = 'block';
-    orderConfirmation.innerHTML = confirmationMessage;
-
-    // reset form and cart
-    form.reset();
-    products.forEach((product) => (product.amount = 0));
-    updateAndPrintCart();
-    submitBtn.disabled = true;
-  }
-});

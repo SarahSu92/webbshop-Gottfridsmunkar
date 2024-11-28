@@ -104,8 +104,11 @@ h3 {
 
 /* Focus for buttons and other interactive elements */
 input:focus,
+
 button:focus,
+
 select:focus,
+
 textarea:focus {
   outline: none;
   border: 2px solid #4D90FE;
@@ -141,14 +144,23 @@ label {
 }
 
 input[type="text"],
+
 input[type="email"],
+
 input[type="tel"],
+
 input[type="password"],
+
 input[type="radio"],
+
 input[type="checkbox"],
+
 input[type="number"],
+
 input[type="date"],
+
 input[type="tel"],
+
 select {
   width: 100%;
   padding: 10px;
@@ -185,6 +197,7 @@ input:invalid+.error-message {
 
 /* send/submit reset buttons */
 button[type="submit"],
+
 button[type="button"] {
   background-color: #007BFF;
   color: #fff;
@@ -283,7 +296,7 @@ label {
 }
 
 .support {
-  margin-left: 400px;
+  margin-left: 10px;
   font-weight: bold;
   padding: 40px;
 }
