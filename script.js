@@ -406,4 +406,43 @@ privacyPolicyCheckbox.addEventListener('change', () => {
   submitBtn.disabled = !isFormValid;
 });
 
+// Orderconfirmation
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent page to reload
+
+  // collect data
+  const purchasedProducts = products.filter((product) => product.amount > 0);
+  const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+  // check if there is any products in cart
+  if (purchasedProducts.length === 0) {
+    alert('Din varukorg är tom. Lägg till produkter innan du beställer.');
+    return;
+  }
+
+  // show orderconfirmation
+  const confirmationMessage = document.getElementById('confirmation-message');
+  confirmationMessage.innerHTML = `
+    <h2>Tack för din beställning!</h2>
+    <p class='msg' >Din beställning har registrerats.</p>
+    <p class='msg'>Vald betalningsmetod: <strong>${paymentMethod === 'card' ? 'Kortbetalning' : 'Faktura'}</strong></p>
+    <h3>Sammanfattning:</h3>
+    <ul class='msg'>
+      ${purchasedProducts.map(product => `
+        <li class='msg'>${product.name} - ${product.amount} st - ${product.amount * product.price} kr</li>
+      `).join('')}
+    </ul>
+    <p class='msg'>Total: <strong>${purchasedProducts.reduce((sum, product) => sum + product.amount * product.price, 0)} kr</strong></p>
+  `;
+
+  // reset form an cart
+  form.reset();
+  products.forEach(product => product.amount = 0);
+  printProductsList();
+  updateAndPrintCart();
+
+  // how to show the orderconfirmation
+  confirmationMessage.style.display = 'block';
+
+});
 
