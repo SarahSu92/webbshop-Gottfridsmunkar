@@ -305,7 +305,7 @@ function updateAndPrintCart() {
       `;
   });
 
-  // Lägg till event-lyssnare för att hantera ökning och minskning
+  // eventlistener for increase and decrease
 document.querySelectorAll('.item-decrease').forEach((button) => {
   button.addEventListener('click', (e) => {
     const productId = Number(e.target.getAttribute('data-id'));
@@ -320,13 +320,13 @@ document.querySelectorAll('.item-increase').forEach((button) => {
   });
 });
 
-// Funktion för att uppdatera mängden och rendera om
+// function to update value and amount
 function updateProductAmount(productId, change) {
   const productIndex = products.findIndex((product) => product.id === productId);
   if (productIndex !== -1) {
     products[productIndex].amount += change;
     if (products[productIndex].amount < 0) {
-      products[productIndex].amount = 0; // Förhindra negativa värden
+      products[productIndex].amount = 0; // prevent amount to go below 0
     }
   }
   updateAndPrintCart();
