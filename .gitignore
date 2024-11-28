@@ -1,7 +1,7 @@
 # Generated files and folders
 dist
 dist-ssr
-*style.css.map
+*.css.map
 
 # Local files
 *.local
