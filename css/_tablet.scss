@@ -22,3 +22,23 @@ img {
   button {
     border: 1px solid black;
   }
+
+  .basket {
+    font-weight: bold;
+    padding: 40px;
+    margin-left: 200px;
+    
+  }
+  
+  .support {
+    font-weight: bold;
+    
+  }
+
+  input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  transform: scale(1.5);
+  margin-right: 10px;
+  
+}

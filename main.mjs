@@ -156,7 +156,7 @@ function updateAndPrintCart() {
   // if cart is empty
   if (purchasedProducts.length === 0) {
     cart.innerHTML =
-      '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span><p>Varukorgen är tom!</p>';
+      '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span><p class="cartempty">Varukorgen är tom!</p>';
     return;
   }
 
@@ -167,10 +167,13 @@ function updateAndPrintCart() {
     cart.innerHTML += `
         <article>
           <img src="${product.img.url}" alt="${product.img.alt}">
-          <span>${product.name}</span> | <span>${product.amount} st</span> | 
-          <span>${product.amount * product.price} kr</span>
+          <div>
+          <span class='spancart'>${product.name}</span> | <span class='spancart'>${product.amount} st</span> | 
+          <span class='spancart'>${product.amount * product.price} kr</span>
+          
           <button class="item-decrease" data-id="${product.id}">-</button>
-        <button class="item-increase" data-id="${product.id}">+</button>
+          <button class="item-increase" data-id="${product.id}">+</button>
+          </div>
         </article>
         `;
   });
@@ -291,37 +294,50 @@ form.addEventListener('submit', (e) => {
     return;
   }
 
-  // Get current date and calculate delivery date
-  const currentDate = new Date(); // Ensure this is a valid Date object
-  const deliveryDate = new Date(currentDate.getTime()); // Clone the current date
-  deliveryDate.setDate(currentDate.getDate() + 3); // Delivery in 3 days
+ // Get current date and calculate delivery date
+const currentDate = new Date(); // Ensure this is a valid Date object
+const deliveryDate = new Date(currentDate.getTime()); // Clone the current date
+deliveryDate.setDate(currentDate.getDate() + 3); // Delivery in 3 days
 
-  // Format the dates
-  const formatDate = (date) => {
-    if (!(date instanceof Date) || isNaN(date)) {
-      console.error('Invalid date:', date);
-      return 'Okänt datum'; // Fallback if date is invalid
-    }
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('sv-SE', options);
-  };
+// Format the dates
+const formatDate = (date) => {
+  if (!(date instanceof Date) || isNaN(date)) {
+    console.error('Invalid date:', date);
+    return 'Okänt datum'; // Fallback if date is invalid
+  }
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  let formattedDate = date.toLocaleDateString('sv-SE', options);
 
-  const formattedOrderDate = formatDate(currentDate);
-  const formattedDeliveryDate = formatDate(deliveryDate);
+  // Month first letter to uppercase
+  const parts = formattedDate.split(' ');
+  if (parts.length >= 3) {
+    parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+    formattedDate = parts.join(' '); 
+  }
+
+  return formattedDate;
+};
+
+const formattedOrderDate = formatDate(currentDate);
+const formattedDeliveryDate = formatDate(deliveryDate);
+
+console.log('Beställningsdatum:', formattedOrderDate);
+console.log('Leveransdatum:', formattedDeliveryDate);
 
   // show orderconfirmation
   const confirmationMessage = document.getElementById('confirmation-message');
   confirmationMessage.innerHTML = `
-    <h2>Tack för din beställning!</h2>
-    <p class='msg'>Din beställning har registrerats den: <strong>${formattedOrderDate}</strong></p>
+    <h2 class='msg'>Tack för din beställning!</h2>
+    <p class='msg'>Din beställning har registrerats den:</p>
+    <p class='msg'><strong>${formattedOrderDate}</strong></p>
     <p class='msg'>Förväntad leverans: <strong>${formattedDeliveryDate}</strong></p>
     <p class='msg'>Vald betalningsmetod: <strong>${paymentMethod === 'card' ? 'Kortbetalning' : 'Faktura'}</strong></p>
-    <h3>Sammanfattning:</h3>
-    <ul class='msg'>
+    <h3 class='msg'>Sammanfattning:</h3>
+    <span class='msg'>
       ${purchasedProducts.map(product => `
-        <li class='msg'>${product.name} - ${product.amount} st - ${product.amount * product.price} kr</li>
+        ${product.name} - ${product.amount} st - ${product.amount * product.price} kr
       `).join('')}
-    </ul>
+    </span>
     <p class='msg'>Total: <strong>${purchasedProducts.reduce((sum, product) => sum + product.amount * product.price, 0)} kr</strong></p>
   `;
 

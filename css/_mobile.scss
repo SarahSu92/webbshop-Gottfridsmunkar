@@ -5,16 +5,18 @@ body {
     box-sizing: border-box; 
 }
 
-.support {
-    
-    font-weight: bold;
-    padding: 5px;
-  }
+.basket {
+  font-weight: bold;
+  padding: 10px;
+  margin-left: 20px;
+  
+  
+}
 
-  .basket {
-    font-weight: bold;
-    padding: 5px;
-  }
+.support {
+  font-weight: bold;
+  
+}
 
   img {
     width: 200px;
@@ -34,3 +36,11 @@ body {
   button {
     border: 1px solid black;
   }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+  width: auto;
+  transform: scale(1.1);
+  margin-right: 10px;
+  
+}
