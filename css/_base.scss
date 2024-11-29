@@ -243,7 +243,6 @@ button[type="submit"],
 button[type="button"] {
   background-color: #007BFF;
   color: #fff;
-  border: none;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
@@ -327,4 +326,8 @@ button[type="button"]:hover {
 .decrease {
   background-color: white;
   font-size: 1rem;
+}
+
+button {
+  border: 1px solid black;
 }

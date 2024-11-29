@@ -206,7 +206,6 @@ button[type=submit],
 button[type=button] {
   background-color: #007BFF;
   color: #fff;
-  border: none;
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
@@ -287,6 +286,10 @@ button[type=button]:hover {
   font-size: 1rem;
 }
 
+button {
+  border: 1px solid black;
+}
+
 @media screen and (min-width: 375px) {
   body {
     max-width: auto;
@@ -313,6 +316,9 @@ button[type=button]:hover {
     border: 2px solid black;
     box-sizing: border-box;
   }
+  button {
+    border: 1px solid black;
+  }
 }
 @media screen and (min-width: 820px) {
   body {
@@ -330,6 +336,9 @@ button[type=button]:hover {
     margin-left: 650px;
     padding-top: 20px;
   }
+  button {
+    border: 1px solid black;
+  }
 }
 @media screen and (min-width: 1300px) {
   body {
@@ -346,5 +355,8 @@ button[type=button]:hover {
   .material-symbols-outlined {
     margin-left: 950px;
     padding-top: 20px;
+  }
+  button {
+    border: 1px solid black;
   }
 }/*# sourceMappingURL=style.css.map */
