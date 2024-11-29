@@ -5,4 +5,28 @@ body {
     box-sizing: border-box; 
 }
 
+.support {
+    
+    font-weight: bold;
+    padding: 5px;
+  }
 
+  .basket {
+    font-weight: bold;
+    padding: 5px;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+}
+
+.product {
+    flex: 0 1 calc(50% - 10px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    box-sizing: border-box;
+  
+  
+  }
