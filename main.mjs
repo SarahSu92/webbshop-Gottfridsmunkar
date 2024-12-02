@@ -23,6 +23,8 @@ products.forEach((product) => {
   `;
 });
 
+
+
 //rating
 function getRatingHtml(rating) {
   let html = "";
@@ -35,8 +37,8 @@ function getRatingHtml(rating) {
 }
 
 function updateProductList() {
-  const sortCriteria = document.getElementById("sortCriteria").value;
-  const sortedProducts = sortProducts(products, sortCriteria, !descending);
+  const sortCriteria = document.getElementById("sortedCriteria").value;
+  const sortedProducts = sortedProducts(products, sortCriteria, !descending);
 
   const productList = document.getElementById("product-list");
   productList.innerHTML = "";
@@ -66,6 +68,8 @@ function updateProductList() {
             `;
   });
 }
+
+
 
 // function to increase and decrease amount.
 function printProductsList() {
@@ -118,6 +122,7 @@ function increaseProductCount(e) {
   printProductsList();
   document.querySelector(`#${keepfocusBtn}`).focus();
   updateAndPrintCart();
+  
 }
 
 //decrease amount
@@ -152,6 +157,12 @@ function updateAndPrintCart() {
   );
   cartCountElement.textContent = totalItemsInCart;
 
+  //On monday 10% discount on the total order.  
+  const today = new Date();
+  
+  let sum = 0;
+  let message = '';
+
   // if cart is empty
   if (purchasedProducts.length === 0) {
     cart.innerHTML =
@@ -159,23 +170,37 @@ function updateAndPrintCart() {
     return;
   }
 
+  if (today.getDay() === 1) { //Mondag starts with 1
+    sum *= 0.9;
+    message += ''
+  }
+
+/*On fridays after 15 pm and on the night between sunday and monday 
+it will be 15% more expensive whitout information to the customer just higher price on the donuts. */
+
+
   //cart products
   cart.innerHTML =
     '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span>';
   purchasedProducts.forEach((product) => {
+    sum += product.amount * product.price;
     cart.innerHTML += `
         <article>
           <img src="${product.img.url}" alt="${product.img.alt}">
           <div>
           <span class='spancart'>${product.name}</span> | <span class='spancart'>${product.amount} st</span> | 
           <span class='spancart'>${product.amount * product.price} kr</span>
-          
           <button class="item-decrease" data-id="${product.id}">-</button>
           <button class="item-increase" data-id="${product.id}">+</button>
           </div>
         </article>
         `;
+        
   });
+
+  cart.innerHTML += `<p>Totalt: ${sum} kr</p>`;
+  cart.innerHTML += `<p>${message}Måndagsrabatt: 10% på hela beloppet!</div>`;
+
 
   // eventlistener for increase and decrease
   document.querySelectorAll(".item-decrease").forEach((button) => {
@@ -205,6 +230,7 @@ function updateAndPrintCart() {
     }
     updateAndPrintCart();
   }
+
 }
 
 //form
@@ -338,6 +364,7 @@ console.log('Leveransdatum:', formattedDeliveryDate);
       `).join('')}
     </span>
     <p class='msg'>Total: <strong>${purchasedProducts.reduce((sum, product) => sum + product.amount * product.price, 0)} kr</strong></p>
+    
   `;
 
   // reset form and cart
@@ -349,3 +376,39 @@ console.log('Leveransdatum:', formattedDeliveryDate);
   // how to show the orderconfirmation
   confirmationMessage.style.display = 'block';
 });
+
+//Timer
+const inactiveityTimeLimit = 15 * 60 * 1000;
+let inactivityTimer;
+
+function startInactivityTimer() {
+  inactivityTimer = setTimeout(() => {
+    clearFormOnTimeout(); 
+  }, inactiveityTimeLimit);
+}
+
+//Reset timer
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimer);
+  startInactivityTimer();
+}
+
+function clearFormOnTimeout() {
+  form.reset();
+  cardFields.style.display = 'none'
+  invoiceFields.style.display = 'none'
+  submitBtn.disabled = true;
+  orderConfirmation.style.display = 'none';
+
+//Message
+alert('Du var för långsam! Formuläret har raderats.');
+}
+
+//Event listeners
+form.addEventListener('input', resetInactivityTimer);
+form.addEventListener('change', resetInactivityTimer);
+form.addEventListener('keydown', resetInactivityTimer);
+
+//Start timer
+startInactivityTimer();
+
