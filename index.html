@@ -151,8 +151,10 @@
         role="alert"
         aria-live="assertive"
       ></span>
-
-      <label for="payment-method">Val av betalsätt:</label>
+      <div>
+      <label for="payment-method" class="payment">Val av betalsätt:</label>
+      </div>
+      <label for="card" class="card">Kort</label>
       <input
         type="radio"
         id="card"
@@ -160,7 +162,7 @@
         value="card"
         required
       />
-      <label for="card">Kort</label>
+      <label for="invoice" class="invoice">Faktura</label>
       <input
         type="radio"
         id="invoice"
@@ -168,8 +170,6 @@
         value="invoice"
         required
       />
-      <label for="invoice">Faktura</label>
-
       <div class="card-fields" id="card-fields" style="display: none">
         <label for="card-number">Kortnummer:</label>
         <input type="text" id="card-number" name="card-number" />
@@ -193,7 +193,7 @@
       </div>
 
       <div>
-      <label for="discount_code">Ange Rabattkod:</label>
+      <label for="discount_code" class="discount_code">Ange Rabattkod:</label>
       <input
         type="text"
         id="discount_code"
@@ -213,7 +213,7 @@
         Håll dig uppdaterad med vårt Nyhetsbrev!
       </label>
 
-      <button type="submit" id="submit-btn" disabled>Beställ</button>
+      <button class="submit" type="submit" id="submit-btn" disabled>Beställ</button>
       <button class="reset" type="reset" id="reset-btn">
         Rensa beställning
       </button>

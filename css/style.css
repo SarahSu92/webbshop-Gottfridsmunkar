@@ -237,14 +237,12 @@ button[type=button]:hover {
   margin-top: 20px;
 }
 
-/* discount */
-#discount-code {
+.discount-code {
   width: 50%;
   display: inline-block;
   margin-right: 10px;
 }
 
-/* style for reset button */
 .reset {
   background-color: rgb(246, 103, 14);
   cursor: pointer;
@@ -252,22 +250,13 @@ button[type=button]:hover {
   font-size: 1rem;
 }
 
-#submit-btn:disabled {
+.submit-btn:disabled {
   background-color: #d3d3d3;
-}
-
-/*style for order confirmation*/
-#msg {
-  display: none;
-  color: green;
-  margin-top: 40px;
-  text-align: center;
 }
 
 .basket {
   font-weight: bold;
   padding: 10px;
-  margin-left: 20px;
   margin-bottom: 40px;
 }
 

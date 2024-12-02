@@ -7,7 +7,6 @@ const productsListDiv = document.querySelector("#product-list");
 products.forEach((product) => {
   productsListDiv.innerHTML += `
   <article class="product">
-  
   <img src="${product.img.url}">
   <h3>${product.name}</h3>
   <p>${product.price} kr</p>
@@ -48,10 +47,10 @@ function updateProductList() {
     productDiv.innerHTML = productsListDiv.innerHTML += `
             <section class="container">
               <article class="product">
+              <img src="${product.img.url}" alt="${product.img.alt}">
                 <h3>${product.name}</h3>
                 <p>${product.price} kr</p>
                 <p>Kategori: ${product.category}</p>
-                <img src="${product.img.url}" alt="${product.img.alt}">
                 <p>${getRatingHtml(product.rating)}&#11088;</p>
                   <div>
                   <button class="decrease" id="decrease-${
@@ -76,10 +75,10 @@ function printProductsList() {
     productsListDiv.innerHTML += `
         <section class="container">
           <article class="product">
+          <img src="${product.img.url}" alt="${product.img.alt}">
             <h3>${product.name}</h3>
             <p>${product.price} kr</p>
             <p>Kategori: ${product.category}</p>
-            <img src="${product.img.url}" alt="${product.img.alt}">
             <p>${getRatingHtml(product.rating)}&#11088;</p>
             <div>
               <button class="decrease" id="decrease-${product.id}">-</button>
