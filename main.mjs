@@ -146,6 +146,8 @@ function decreaseProductCount(e) {
 
 printProductsList();
 
+
+//Cart
 const cart = document.querySelector("#cart");
 
 function updateAndPrintCart() {
@@ -157,12 +159,6 @@ function updateAndPrintCart() {
   );
   cartCountElement.textContent = totalItemsInCart;
 
-  //On monday 10% discount on the total order.  
-  const today = new Date();
-  
-  let sum = 0;
-  let message = '';
-
   // if cart is empty
   if (purchasedProducts.length === 0) {
     cart.innerHTML =
@@ -170,36 +166,52 @@ function updateAndPrintCart() {
     return;
   }
 
-  if (today.getDay() === 1) { //Mondag starts with 1
-    sum *= 0.9;
-    message += ''
-  }
+  //On monday 10% discount on the total order.  
+  const today = new Date();
+
+  let sum = 0;
+  let message = '';
 
 /*On fridays after 15 pm and on the night between sunday and monday 
-it will be 15% more expensive whitout information to the customer just higher price on the donuts. */
+it will be 15% more expensive whitout information to the customer just higher price on the donuts.*/
+const friday = today.getDay() === 6;
+const monday = today.getDay() === 1;
+const currentHour = today.getHours();
 
+
+let priceIncrease = 1;
+
+if ((friday && currentHour >= 15) || (monday && currentHour <= 3)){
+  priceIncrease = 1.15;
+}
 
   //cart products
   cart.innerHTML =
     '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span>';
   purchasedProducts.forEach((product) => {
-    sum += product.amount * product.price;
-    cart.innerHTML += `
+    const adjustedPrice = product.price * priceIncrease;
+    sum += product.amount * adjustedPrice;
+        cart.innerHTML += `
         <article>
           <img src="${product.img.url}" alt="${product.img.alt}">
           <div>
-          <span class='spancart'>${product.name}</span> | <span class='spancart'>${product.amount} st</span> | 
-          <span class='spancart'>${product.amount * product.price} kr</span>
+          <span class='spancart'>${product.name}</span> | <span class='spancart'>${product.amount}</span> | 
+          <span class='spancart'>${product.amount * adjustedPrice.toFixed(2)} kr</span>
           <button class="item-decrease" data-id="${product.id}">-</button>
           <button class="item-increase" data-id="${product.id}">+</button>
           </div>
         </article>
         `;
         
+// Discount
+if (today.getDay() === 1) { // Monday
+  sum *= 0.9;
+  message += '<p>Måndagsrabatt: 10% på hela beloppet!</p>';
+}
   });
 
-  cart.innerHTML += `<p>Totalt: ${sum} kr</p>`;
-  cart.innerHTML += `<p>${message}Måndagsrabatt: 10% på hela beloppet!</div>`;
+  cart.innerHTML += `<p>Totalt: ${sum.toFixed(2)} kr</p>`;
+  cart.innerHTML += `<p>${message}</p>`;
 
 
   // eventlistener for increase and decrease
