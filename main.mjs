@@ -146,6 +146,7 @@ function decreaseProductCount(e) {
 
 printProductsList();
 
+
 //Cart
 function updateAndPrintCart() {
   const purchasedProducts = products.filter((product) => product.amount > 0);
@@ -175,13 +176,14 @@ function updateAndPrintCart() {
 
   let sum = 0;
   let message = "";
+  let orderedProductAmount = 0;
 
   cart.innerHTML =
     '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span>';
   
   purchasedProducts.forEach((product) => {
     let adjustedPrice = product.price * priceIncrease;
-
+    orderedProductAmount += product.amount;
     // If bouht 10 products of same sort get 10% discount
     if (product.amount >= 10) {
       adjustedPrice *= 0.9; // 10% discount
@@ -203,11 +205,22 @@ function updateAndPrintCart() {
     `;
   });
 
+  if (orderedProductAmount > 15) {
+    cart.innerHTML += `<p>Fraktkostnad: 0 kr</p>`;
+  }else {
+    cart.innerHTML += `<p>Fraktkostnad: ${Math.round(25 + (0.1 * sum))} kr</p>`;
+  }
+  
+
   // Monday discount
   if (monday) {
     sum *= 0.9; // 10% discount on total amount
     message += '<p>Måndagsrabatt: 10% på hela beloppet!</p>';
   }
+
+//Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
+
+
 
   cart.innerHTML += `<p>Totalt: ${sum.toFixed(2)} kr</p>`;
   cart.innerHTML += `<p>${message}</p>`;
