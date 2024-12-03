@@ -18,6 +18,16 @@ input[type=checkbox],
 input[type=number],
 input[type=date],
 input[type=tel],
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
 input[type=radio],
 input[type=checkbox] {
   width: auto;
@@ -60,6 +70,7 @@ input:valid {
 
 .sort {
   width: 100px;
+  padding: 0;
 }
 
 p {

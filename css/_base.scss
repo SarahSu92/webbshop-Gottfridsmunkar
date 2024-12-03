@@ -29,6 +29,17 @@ input[type="date"],
 
 input[type="tel"],
 
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   width: auto;
@@ -72,6 +83,7 @@ input:valid {
 
 .sort {
   width: 100px;
+  padding: 0;
 }
 
 p {
@@ -112,6 +124,9 @@ img {
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 
+
+
+
 }
 
 nav {
@@ -128,7 +143,10 @@ nav {
   text-transform: uppercase;
   padding: 10px;
   font-weight: bold;
+
+
 }
+
 
 h2 {
   text-align: center;
