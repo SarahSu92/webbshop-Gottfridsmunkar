@@ -50,19 +50,15 @@
     </header>
 
     <main>
-      <section>
-        <label for="sortCriteria">Sortera efter:</label>
-        <select class="sortCriteria">
-          <option value="name">Namn</option>
-          <option value="price">Pris</option>
-          <option value="category">Kategori</option>
-          <option value="rating">Rating</option>
-        </select>         
-        <button class="updatelist">
-          Sortera
-        </button>
-      </section>
-
+      <section class="renderOptions">Sortera på:
+      <select class="sort" id="sort-options">
+        <option value="name">Namn</option>
+        <option value="price">Pris</option>
+        <option value="rating">Raiting</option>
+        <option value="category">Kategori</option>
+      </select>
+    </section>
+          
       <section>
         <h2 id="products">Produkter</h2>
         <div id="product-list"></div>
@@ -181,7 +177,7 @@
         <input type="text" id="cvc" name="cvc" />
       </div>
 
-      <div class="invoice-fields" id="invoice-fields" style="display: none">
+      <div class="invoice-fields" name="payment-method" id="invoice-fields" style="display: none">
         <label for="personal-number">Personnummer:</label>
         <input
           type="text"

@@ -2,6 +2,7 @@
 import products from "./products.mjs";
 
 const productsListDiv = document.querySelector("#product-list");
+const sortOptions = document.getElementById('sort-options');
 
 //products
 products.forEach((product) => {
@@ -23,7 +24,72 @@ products.forEach((product) => {
   `;
 });
 
+// Function to sort products based on selected criteria
+function sortProducts(criteria) {
+  let sortedProducts;
 
+  switch (criteria) {
+    case 'Namn':
+      sortedProducts = [...products].sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'Pris':
+      sortedProducts = [...products].sort((a, b) => a.price - b.price);
+      break;
+    case 'Rating':
+      sortedProducts = [...products].sort((a, b) => b.rating - a.rating); // descending
+      break;
+    case 'Kategori':
+      sortedProducts = [...products].sort((a, b) => a.category.localeCompare(b.category));
+      break;
+    default:
+      sortedProducts = products;
+  }
+
+  printProductsList(sortedProducts); // Call function to render sorted products
+}
+
+// Event listener for sort options
+sortOptions.addEventListener("change", (e) => {
+  sortProducts(e.target.value); // Sort based on the selected criteria
+});
+
+// Function to print products list (modified to accept sorted products)
+function printProductsList(sortedProducts = products) {
+  productsListDiv.innerHTML = ""; // Clear previous list
+
+  sortedProducts.forEach((product) => {
+    productsListDiv.innerHTML += `
+      <section class="container">
+        <article class="product">
+          <img src="${product.img.url}" alt="${product.img.alt}">
+          <h3>${product.name}</h3>
+          <p>${product.price} kr</p>
+          <p>Kategori: ${product.category}</p>
+          <p>${getRatingHtml(product.rating)}&#11088;</p>
+          <div>
+            <button class="decrease" id="decrease-${product.id}">-</button>
+            <button class="increase" id="increase-${product.id}">+</button>
+            <span>${product.amount}</span>
+          </div>
+        </article>
+      </section>
+    `;
+  });
+
+  addEventListenersToButtons(); // Ensure button event listeners are re-attached after rendering
+}
+
+function addEventListenersToButtons() {
+  const increaseButtons = document.querySelectorAll("button.increase");
+  increaseButtons.forEach((button) => {
+    button.addEventListener("click", increaseProductCount);
+  });
+
+  const decreaseButtons = document.querySelectorAll("button.decrease");
+  decreaseButtons.forEach((button) => {
+    button.addEventListener("click", decreaseProductCount);
+  });
+}
 
 //rating
 function getRatingHtml(rating) {
@@ -36,76 +102,8 @@ function getRatingHtml(rating) {
   return html;
 }
 
-function updateProductList() {
-  const sortCriteria = document.getElementById("sortedCriteria").value;
-  const sortedProducts = sortedProducts(products, sortCriteria, !descending);
-
-  const productList = document.getElementById("product-list");
-  productList.innerHTML = "";
-
-  sortedProducts.forEach((product) => {
-    const productDiv = document.createElement("div");
-    productDiv.classList.add("product");
-    productDiv.innerHTML = productsListDiv.innerHTML += `
-            <section class="container">
-              <article class="product">
-              <img src="${product.img.url}" alt="${product.img.alt}">
-                <h3>${product.name}</h3>
-                <p>${product.price} kr</p>
-                <p>Kategori: ${product.category}</p>
-                <p>${getRatingHtml(product.rating)}&#11088;</p>
-                  <div>
-                  <button class="decrease" id="decrease-${
-                    product.id
-                  }">-</button>
-                  <button class="increase" id="increase-${
-                    product.id
-                  }">+</button>
-                  <span>${product.amount}</span>
-                </div>
-              </article>
-              </section>
-            `;
-  });
-}
 
 
-
-// function to increase and decrease amount.
-function printProductsList() {
-  productsListDiv.innerHTML = "";
-
-  products.forEach((product) => {
-    productsListDiv.innerHTML += `
-        <section class="container">
-          <article class="product">
-          <img src="${product.img.url}" alt="${product.img.alt}">
-            <h3>${product.name}</h3>
-            <p>${product.price} kr</p>
-            <p>Kategori: ${product.category}</p>
-            <p>${getRatingHtml(product.rating)}&#11088;</p>
-            <div>
-              <button class="decrease" id="decrease-${product.id}">-</button>
-              <button class="increase" id="increase-${product.id}">+</button>
-              <span>${product.amount}</span>
-            </div>
-          </article>
-          </section>
-        `;
-  });
-
-  const increaseButtons = document.querySelectorAll("button.increase");
-  increaseButtons.forEach((button) => {
-    button.addEventListener("click", increaseProductCount);
-  });
-
-  const decreaseButtons = document.querySelectorAll("button.decrease");
-  decreaseButtons.forEach((button) => {
-    button.addEventListener("click", decreaseProductCount);
-  });
-}
-
-printProductsList();
 
 //increase amount
 function increaseProductCount(e) {
@@ -174,6 +172,7 @@ function updateAndPrintCart() {
     priceIncrease = 1.15; // 15% higher price
   }
 
+  
   let sum = 0;
   let message = "";
   let orderedProductAmount = 0;
@@ -218,10 +217,6 @@ function updateAndPrintCart() {
     message += '<p>Måndagsrabatt: 10% på hela beloppet!</p>';
   }
 
-//Om kunden beställer totalt mer än 15 munkar så blir frakten gratis. I annat fall är fraktsumman 25 kr plus 10% av totalbeloppet i varukorgen.
-
-
-
   cart.innerHTML += `<p>Totalt: ${sum.toFixed(2)} kr</p>`;
   cart.innerHTML += `<p>${message}</p>`;
 
@@ -257,6 +252,7 @@ function updateAndPrintCart() {
 
 
 //form
+
 const paymentMethodRadios = document.querySelectorAll(
   'input[name="payment-method"]'
 );
@@ -282,6 +278,8 @@ paymentMethodRadios.forEach((radio) => {
     }
   });
 });
+
+
 
 // validation personalnumber
 personalNumberInput.addEventListener("input", () => {
@@ -341,7 +339,6 @@ form.addEventListener('submit', (e) => {
     alert('Din varukorg är tom. Lägg till produkter innan du beställer.');
     return;
   }
-
  // Get current date and calculate delivery date
 const currentDate = new Date(); // Ensure this is a valid Date object
 const deliveryDate = new Date(currentDate.getTime()); // Clone the current date
