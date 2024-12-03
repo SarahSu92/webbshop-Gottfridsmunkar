@@ -336,7 +336,7 @@ div {
     margin-right: 10px;
   }
 }
-@media screen and (min-width: 820px) {
+@media screen and (min-width: 600px) {
   body {
     max-width: 1200px;
     margin: 0 auto;
@@ -358,7 +358,7 @@ div {
   .basket {
     font-weight: bold;
     padding: 40px;
-    margin-left: 200px;
+    margin-left: 180px;
   }
   .support {
     font-weight: bold;

@@ -146,10 +146,7 @@ function decreaseProductCount(e) {
 
 printProductsList();
 
-
 //Cart
-const cart = document.querySelector("#cart");
-
 function updateAndPrintCart() {
   const purchasedProducts = products.filter((product) => product.amount > 0);
   const cartCountElement = document.getElementById("cart-count");
@@ -159,62 +156,64 @@ function updateAndPrintCart() {
   );
   cartCountElement.textContent = totalItemsInCart;
 
-  // if cart is empty
   if (purchasedProducts.length === 0) {
     cart.innerHTML =
       '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span><p class="cartempty">Varukorgen är tom!</p>';
     return;
   }
 
-  //On monday 10% discount on the total order.  
+  //On friday after 15 pm and the night on monday to sunday 15% higher price. No notification to customer. 
   const today = new Date();
+  const friday = today.getDay() === 5;
+  const monday = today.getDay() === 1;
+  const currentHour = today.getHours();
+
+  let priceIncrease = 1;
+  if ((friday && currentHour >= 15) || (monday && currentHour <= 3)) {
+    priceIncrease = 1.15; // 15% higher price
+  }
 
   let sum = 0;
-  let message = '';
+  let message = "";
 
-/*On fridays after 15 pm and on the night between sunday and monday 
-it will be 15% more expensive whitout information to the customer just higher price on the donuts.*/
-const friday = today.getDay() === 6;
-const monday = today.getDay() === 1;
-const currentHour = today.getHours();
-
-
-let priceIncrease = 1;
-
-if ((friday && currentHour >= 15) || (monday && currentHour <= 3)){
-  priceIncrease = 1.15;
-}
-
-  //cart products
   cart.innerHTML =
     '<span class="basket">Varukorg</span><span class="support">Kundsupport 08-634 30 30</span>';
+  
   purchasedProducts.forEach((product) => {
-    const adjustedPrice = product.price * priceIncrease;
-    sum += product.amount * adjustedPrice;
-        cart.innerHTML += `
-        <article>
-          <img src="${product.img.url}" alt="${product.img.alt}">
-          <div>
+    let adjustedPrice = product.price * priceIncrease;
+
+    // If bouht 10 products of same sort get 10% discount
+    if (product.amount >= 10) {
+      adjustedPrice *= 0.9; // 10% discount
+    }
+
+    const totalProductPrice = product.amount * adjustedPrice;
+    sum += totalProductPrice;
+
+    cart.innerHTML += `
+      <article>
+        <img src="${product.img.url}" alt="${product.img.alt}">
+        <div>
           <span class='spancart'>${product.name}</span> | <span class='spancart'>${product.amount}</span> | 
-          <span class='spancart'>${product.amount * adjustedPrice.toFixed(2)} kr</span>
+          <span class='spancart'>${totalProductPrice.toFixed(2)} kr</span>
           <button class="item-decrease" data-id="${product.id}">-</button>
           <button class="item-increase" data-id="${product.id}">+</button>
-          </div>
-        </article>
-        `;
-        
-// Discount
-if (today.getDay() === 1) { // Monday
-  sum *= 0.9;
-  message += '<p>Måndagsrabatt: 10% på hela beloppet!</p>';
-}
+        </div>
+      </article>
+    `;
   });
+
+  // Monday discount
+  if (monday) {
+    sum *= 0.9; // 10% discount on total amount
+    message += '<p>Måndagsrabatt: 10% på hela beloppet!</p>';
+  }
 
   cart.innerHTML += `<p>Totalt: ${sum.toFixed(2)} kr</p>`;
   cart.innerHTML += `<p>${message}</p>`;
 
 
-  // eventlistener for increase and decrease
+// eventlistener for increase and decrease
   document.querySelectorAll(".item-decrease").forEach((button) => {
     button.addEventListener("click", (e) => {
       const productId = Number(e.target.getAttribute("data-id"));
@@ -243,7 +242,6 @@ if (today.getDay() === 1) { // Monday
     updateAndPrintCart();
   }
 
-}
 
 //form
 const paymentMethodRadios = document.querySelectorAll(
@@ -424,3 +422,4 @@ form.addEventListener('keydown', resetInactivityTimer);
 //Start timer
 startInactivityTimer();
 
+}
