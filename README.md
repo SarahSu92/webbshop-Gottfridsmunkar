@@ -5,6 +5,7 @@ Project Title "Gottfrids Munkar Onlinebutik"
 This project is a onepage webbshop. The products for sale is donuts and the minimum product amount was 10. 
 
 The page has not much CSS to celebrate about because I was focusing more on JavaScript and that was also the main focus for this assignment. 
+But I have mediaqueries to adapt the page to desktop, tablet and mobile devices. 
 The products have a image, price, rating, category and name. They are also avaible to sort in a sorted list. Also buttons for increase and decrease the products amount.
 
 The cart show the added products and amount, price for each dount but also the total amount is shown, also added shipment price and a few special rules that are replied, if
