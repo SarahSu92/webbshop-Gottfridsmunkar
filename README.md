@@ -13,5 +13,5 @@ added 15% on the current price. No notificatiion about it just higher pricer in 
 
 At the bottom of the page we have a form to collect and validate order information and how to pay, either with card or invoice as option, though invoice is only avalible if amount is below
 800 kr. Otherwise it cant be choosed as a option in the form if the price amount is over 800 kr in the cart. When the order is validated and have been send a orderconfirmation accurs below
-the form to show the date of the order and shipment details, price and so on. If the customer tkes to long though, over 15 minutes to complete the form validation an alert pops up that informs
+the form to show the date of the order and shipment details, price and so on. If the customer takes to long though, over 15 minutes to complete the form validation an alert pops up that informs
 the customer that it has taken to long to complete and the form has been restored. 
