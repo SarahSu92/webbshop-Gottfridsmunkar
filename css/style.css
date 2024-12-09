@@ -93,7 +93,7 @@ img {
   color: black;
 }
 
-#cart-count {
+.cart-count {
   position: absolute;
   top: 0;
   right: 5;

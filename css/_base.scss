@@ -10,23 +10,14 @@ input:invalid+.error-message {
   display: block;
 }
 
-
 input[type="text"],
-
 input[type="email"],
-
 input[type="tel"],
-
 input[type="password"],
-
 input[type="radio"],
-
 input[type="checkbox"],
-
 input[type="number"],
-
 input[type="date"],
-
 input[type="tel"],
 
 select {
@@ -37,7 +28,7 @@ select {
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 1rem;
-  
+
 }
 
 input[type="radio"],
@@ -45,7 +36,7 @@ input[type="checkbox"] {
   width: auto;
   transform: scale(1.1);
   margin-right: 10px;
-  
+
 }
 
 input:invalid {
@@ -97,7 +88,7 @@ h1 {
 img {
   width: 200px;
   height: 200px;
-  
+
 }
 
 .shoppingcart {
@@ -109,7 +100,7 @@ img {
 }
 
 
-#cart-count {
+.cart-count {
   position: absolute;
   top: 0;
   right: 5;
@@ -123,9 +114,6 @@ img {
   line-height: 18px;
   font-weight: bold;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-
-
-
 
 }
 
@@ -144,9 +132,7 @@ nav {
   padding: 10px;
   font-weight: bold;
 
-
 }
-
 
 h2 {
   text-align: center;
@@ -192,9 +178,7 @@ h3 {
 
 /* Focus for buttons and other interactive elements */
 input:focus,
-
 button:focus,
-
 select:focus,
 
 textarea:focus {
@@ -206,7 +190,7 @@ textarea:focus {
 
 .sortCriteria {
   width: 120px;
-  
+
 }
 
 button.updatelist {
@@ -291,7 +275,7 @@ button[type="button"]:hover {
   cursor: pointer;
   padding: 5px;
   font-size: 1rem;
-  
+
 }
 
 .submit-btn:disabled {
@@ -303,8 +287,8 @@ button[type="button"]:hover {
   font-weight: bold;
   padding: 10px;
   margin-bottom: 40px;
- 
-  
+
+
 }
 
 .support {
@@ -354,4 +338,3 @@ div {
   color: red;
   font-size: 1rem;
 }
-

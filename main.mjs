@@ -31,8 +31,7 @@ function sortProducts(criteria) {
   switch (criteria) {
     case 'name':
       sortedProducts = [...products].sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
+        a.name.localeCompare(b.name));
       break;
     case 'price':
       sortedProducts = [...products].sort((a, b) => a.price - b.price);
@@ -42,8 +41,7 @@ function sortProducts(criteria) {
       break;
     case 'category':
       sortedProducts = [...products].sort((a, b) =>
-        a.category.localeCompare(b.category)
-      );
+        a.category.localeCompare(b.category));
       break;
     default:
       sortedProducts = products;
@@ -104,6 +102,8 @@ function addEventListenersToButtons() {
   decreaseButtons.forEach((button) => {
     button.addEventListener('click', decreaseProductCount);
   });
+
+  
 }
 
 //rating
@@ -496,4 +496,5 @@ function updateAndPrintCart() {
 
   //Start timer
   startInactivityTimer();
+
 }

@@ -24,8 +24,6 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="icon.png" />
 
-    <link rel="manifest" href="site.webmanifest" />
-    <meta name="theme-color" content="#fafafa" />
   </head>
 
   <body>
@@ -44,7 +42,7 @@
           href="#cart"
           id="updateCart">
           <span class="material-symbols-outlined">shopping_cart</span>
-          <span id="cart-count">0</span>
+          <span class="cart-count" id="cart-count">0</span>
         </a>
       </div>
     </header>
@@ -177,7 +175,7 @@
         <input type="text" id="cvc" name="cvc" />
       </div>
 
-      <div class="invoice-fields" name="payment-method" id="invoice-fields" style="display: none">
+      <div class="invoice-fields" name="payment-method" id="invoice-fields">
         <label for="personal-number">Personnummer:</label>
         <input
           type="text"
