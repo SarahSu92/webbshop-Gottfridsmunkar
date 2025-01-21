@@ -17,8 +17,7 @@ the form to show the date of the order and shipment details, price and so on. If
 the customer that it has taken to long to complete and the form has been restored. 
 
 ## Screenshots
-![Skärmbild 2024-12-04 145718](https://github.com/user-attachments/assets/728f84fe-008a-4fe7-957c-145a59c3ebbb)
-![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/39c48082-9aa8-409a-b7e1-7aa575d5cb72)
+![Skärmbild 2024-12-04 145718](https://github.com/user-attachments/assets/728f84fe-008a-4fe7-957c-145a59c3ebbb) ![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/39c48082-9aa8-409a-b7e1-7aa575d5cb72)
 
 
 
