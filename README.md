@@ -16,16 +16,17 @@ At the bottom of the page we have a form to collect and validate order informati
 the form to show the date of the order and shipment details, price and so on. If the customer takes to long though, over 15 minutes to complete the form validation an alert pops up that informs
 the customer that it has taken to long to complete and the form has been restored. 
 
-Images of the page below, also a ligthouse report. 
+## Screenshots
+![Skärmbild 2024-12-04 145718](https://github.com/user-attachments/assets/728f84fe-008a-4fe7-957c-145a59c3ebbb)
+![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/48ebb991-8f1c-4b20-af82-2b19a5f55af9)
+![Skärmbild 2024-12-04 145833](https://github.com/user-attachments/assets/c2578e18-001c-475c-8eeb-88ffeeec65af)
+![Skärmbild 2024-12-04 145942](https://github.com/user-attachments/assets/caec130e-eeec-416b-9e67-72b24cef5d20)
 
-![Skärmbild 2024-12-04 145718](https://github.com/user-attachments/assets/a2320c4e-21a9-414a-b359-c8e3348bdf67)
-![Skärmbild 2024-12-04 145730](https://github.com/user-attachments/assets/155228b5-6bcc-41cb-b56c-eb1fe1680881)
-![Skärmbild 2024-12-04 145818](https://github.com/user-attachments/assets/6e1e6156-42db-483e-ada4-a424db171b86)
-![Skärmbild 2024-12-04 145833](https://github.com/user-attachments/assets/df099116-a3ef-42d4-970f-99972b63f4ca)
-![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/c43bb77a-1c52-4839-9af5-f586defd12ec)
-![Skärmbild 2024-12-04 145925](https://github.com/user-attachments/assets/ad72b506-3d79-4364-89fd-4bee4c6ec76b)
-![Skärmbild 2024-12-04 145942](https://github.com/user-attachments/assets/6ac4af82-e9e8-4cde-a791-d82f5ed1dad5)
-![Skärmbild 2024-12-04 150026](https://github.com/user-attachments/assets/f179b4f7-a04a-42c0-a0ed-e2880613c6bd)
+
+
+
+
+
 
 
 
