@@ -18,9 +18,8 @@ the customer that it has taken to long to complete and the form has been restore
 
 ## Screenshots
 ![Skärmbild 2024-12-04 145718](https://github.com/user-attachments/assets/728f84fe-008a-4fe7-957c-145a59c3ebbb)
-![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/48ebb991-8f1c-4b20-af82-2b19a5f55af9)
-![Skärmbild 2024-12-04 145833](https://github.com/user-attachments/assets/c2578e18-001c-475c-8eeb-88ffeeec65af)
-![Skärmbild 2024-12-04 145942](https://github.com/user-attachments/assets/caec130e-eeec-416b-9e67-72b24cef5d20)
+![Skärmbild 2024-12-04 145852](https://github.com/user-attachments/assets/39c48082-9aa8-409a-b7e1-7aa575d5cb72)
+
 
 
 
