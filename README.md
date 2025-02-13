@@ -4,7 +4,7 @@ Project Title "Gottfrids Munkar Onlinebutik"
 This project is a onepage donut webbshop.
 
 The page has not much CSS to celebrate about because I was focusing more on JavaScript and that was also the main focus for this project.
-Also the webb page is responsive to adapt all devices such as mobile, desktop and desktop.
+The webb page is responsive to adapt all devices such as mobile, desktop and desktop.
 
 ## Tech Stack
 ![image](https://github.com/user-attachments/assets/97b82d48-12c0-4424-8cbd-f86b9d7db4c2)
